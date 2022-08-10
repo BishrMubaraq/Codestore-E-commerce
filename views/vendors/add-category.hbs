@@ -1,0 +1,42 @@
+<section>
+  <div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><a href="/vendor/categories"><span class="text-muted fw-light">Categories/</span></a>
+      Add Category</h4>
+
+    <!-- Basic Layout & Basic with Icons -->
+    <div class="row">
+      <!-- Basic Layout -->
+      <div class="col-xxl">
+        <div class="card mb-4">
+          <div class="card-header d-flex align-items-center justify-content-between">
+            <h5 class="mb-0">Add Category</h5>
+          </div>
+          <div class="card-body">
+            <form id="addCategory" action="/vendor/add-category" method="post">
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="basic-default-name">Name</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" required name="name" />
+                  {{#if vcategoryErr}}
+                  <small class="text-danger">{{vcategoryErr}}</small>
+                  {{/if}}
+                </div>
+              </div>
+              <div class="row justify-content-end">
+                <div class="col-sm-10">
+                  <button type="submit" class="btn btn-success">Add</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+<script>
+  $("#addCategory").validate();
+</script>

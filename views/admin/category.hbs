@@ -1,0 +1,102 @@
+{{!-- <section class="container-p-y container-xxl flex-grow-1">
+  <div class="d-flex align-items-end justify-content-end">
+    <a href="/admin/add-category">
+      <button type="button" class="btn rounded-pill btn-outline-success my-3">
+        <span class="tf-icons bx bx-category"></span>
+        Add Category
+      </button>
+    </a>
+  </div>
+
+  <div class="card">
+
+    <h5 class="card-header">All Categories</h5>
+
+    <div class="table-responsive text-nowrap">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Sl no.</th>
+            <th>Category Name</th>
+          </tr>
+        </thead>
+        {{#each categories}}
+        <tbody class="table-border-bottom-0">
+          <tr>
+            <td>
+              {{inc @index}}
+            </td>
+            <td>
+              {{name}}
+            </td>
+            <td>
+              <a href="/admin/edit-category?id={{_id}}">
+                <button type="button" class="btn rounded-pill btn-icon btn-outline-primary">
+                  <span class="tf-icons bx bx-edit"></span>
+                </button>
+              </a>
+              <a onclick="return confirm('Are you sure to delete')" href="/admin/delete-category?id={{_id}}">
+                <button type="button" class="btn rounded-pill btn-icon btn-outline-danger">
+                  <span class="tf-icons bx bx-trash"></span>
+                </button>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+        {{/each}}
+      </table>
+    </div>
+  </div>
+</section> --}}
+<section class="container-p-y container-xxl flex-grow-1">
+  <div class="d-flex align-items-end justify-content-end">
+    <a href="/admin/add-category">
+      <button type="button" class="btn rounded-pill btn-outline-success my-3">
+        <span class="tf-icons bx bx-category"></span>
+        Add Category
+      </button>
+    </a>
+  </div>
+  <div class="card">
+
+    <h5 class="card-header">All Categories</h5>
+
+    <div class="table-responsive text-nowrap p-4">
+      <table id="productTable" class="table p-3" style="width:100%">
+        <thead>
+          <tr>
+            <th>Sl no.</th>
+            <th>Category Name</th>
+            <th>Options</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each categories}}
+          <tr>
+            <td>{{inc @index}}</td>
+            <td>{{name}}</td>
+            <td><a href="/admin/edit-category?id={{_id}}">
+                <button type="button" class="btn rounded-pill btn-icon btn-outline-primary">
+                  <span class="tf-icons bx bx-edit"></span>
+                </button>
+              </a>
+              <a onclick="return confirm('Are you sure to delete')" href="/admin/delete-category?id={{_id}}">
+                <button type="button" class="btn rounded-pill btn-icon btn-outline-danger">
+                  <span class="tf-icons bx bx-trash"></span>
+                </button>
+              </a>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<script>
+  $(document).ready(function () {
+    $('#user_table').wrap('<div id="hide" style="display:none"/>');
+    $('#hide').css('display', 'block');
+  });
+  var table = $('#productTable').DataTable();
+</script>

@@ -1,0 +1,461 @@
+<!-- Product Detail -->
+{{#if orderDetails}}
+<div class="container">
+    <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-100 p-lr-0-lg">
+        <a href="/" class="stext-120 cl4 hov-cl1 trans-04">
+            Home
+            <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+        </a>
+        <a href="/orders" class="stext-120 cl4 hov-cl1 trans-04">
+            Orders
+            <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+        </a>
+
+        <a class="stext-120 cl8 hov-cl1 trans-04">
+            Track Order
+
+        </a>
+    </div>
+</div>
+<section class="sec-product-detail bg0  p-b-60">
+    <div class="container">
+        <div class="bor10 m-t-50 p-t-43 p-b-40">
+            <!-- Tab01 -->
+            <div class="tab01">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item p-b-10">
+                        <a class="nav-link active" data-toggle="tab" href="#description" role="tab">Product Details</a>
+                    </li>
+
+                    <li class="nav-item p-b-10">
+                        <a class="nav-link" data-toggle="tab" href="#information" role="tab">Order Details</a>
+                    </li>
+
+                    <li class="nav-item p-b-10">
+                        <a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Track Order</a>
+                    </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content p-t-43">
+                    <!-- - -->
+                    <div class="tab-pane fade show active" id="description" role="tabpanel">
+                        {{!-- <div class="how-pos2 p-lr-15-md">
+                            <pre class="stext-102 cl6">{{productDetails.description}}</pre>
+                        </div> --}}
+                        <div class="row">
+                            <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
+                                <ul class="p-lr-28 p-lr-15-sm">
+
+
+
+                                    <li class="flex-w flex-t p-b-7">
+                                        <span class="stext-102 cl3 size-205">
+                                            Name
+                                        </span>
+
+                                        <span class="stext-102 cl3 size-206">
+                                            {{orderDetails.[0].product.name}}
+                                        </span>
+                                    </li>
+                                    <li class="flex-w flex-t p-b-7">
+                                        <span class="stext-102 cl3 size-205">
+                                            Price
+                                        </span>
+
+                                        <span class="stext-102 cl3 size-206">
+                                           <span style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">₹</span> {{orderDetails.[0].product.price}}
+                                        </span>
+                                    </li>
+                                    <li class="flex-w flex-t p-b-7">
+                                        <span class="stext-102 cl3 size-205">
+                                            Quantity
+                                        </span>
+
+                                        <span class="stext-102 cl3 size-206">
+                                            {{orderDetails.[0].orderObj.products.quantity}}
+                                        </span>
+                                    </li>
+
+                                    <li class="flex-w flex-t p-b-7">
+                                        <span class="stext-102 cl3 size-205">
+                                            Size
+                                        </span>
+
+                                        <span class="stext-102 cl3 size-206">
+                                            Size {{orderDetails.[0].orderObj.products.size}}
+                                        </span>
+                                    </li>
+                                    <li class="flex-w flex-t p-b-7">
+                                        <span class="stext-102 cl3 size-205">
+                                            Total
+                                        </span>
+
+                                        <span class="stext-102 cl3 size-206">
+                                          <span style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">₹</span>  {{orderDetails.[0].productTotal}}
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- - -->
+                    <div class="tab-pane fade" id="information" role="tabpanel">
+                        <div class="row">
+                            <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
+                                <ul class="p-lr-28 p-lr-15-sm">
+
+
+
+                                    <li class="flex-w flex-t p-b-7">
+                                        <span class="stext-102 cl3 size-205">
+                                            Order Id
+                                        </span>
+
+                                        <span class="stext-102 cl3 size-206">
+                                            {{orderDetails.[0].orderObj.orderId}}
+                                        </span>
+                                    </li>
+                                    <li class="flex-w flex-t p-b-7">
+                                        <span class="stext-102 cl3 size-205">
+                                            Payment Method
+                                        </span>
+
+                                        <span class="stext-102 cl3 size-206">
+                                            {{orderDetails.[0].orderObj.payment_method}}
+                                        </span>
+                                    </li>
+
+                                    <li class="flex-w flex-t p-b-7">
+                                        <span class="stext-102 cl3 size-205">
+                                            Order Place Date
+                                        </span>
+
+                                        <span class="stext-102 cl3 size-206">
+                                            {{orderDetails.[0].date}}
+                                        </span>
+                                    </li>
+                                    <li class="flex-w flex-t p-b-7">
+                                        <span class="stext-102 cl3 size-205">
+                                            Shipping Address
+                                        </span>
+
+                                        <span class="stext-102 cl3 size-206">
+                                            {{orderDetails.[0].orderObj.address.fname}}
+                                            {{orderDetails.[0].orderObj.address.lname}},{{orderDetails.[0].orderObj.address.address}},{{orderDetails.[0].orderObj.address.city}},{{orderDetails.[0].orderObj.address.state}}
+                                            <br>
+                                            Pincode : {{orderDetails.[0].orderObj.address.pincode}} <br>
+                                            Landmark : {{orderDetails.[0].orderObj.address.landmark}} <br>
+                                            MobileNumber : {{orderDetails.[0].orderObj.address.mobileNumber}} <br>
+                                            Email : {{orderDetails.[0].orderObj.address.email}} <br>
+                                        </span>
+                                    </li>
+                                    <li class="flex-w flex-t p-b-7">
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-secondary" data-toggle="modal"
+                                            data-target="#exampleModalCenter">
+                                            Invoice
+                                        </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade mt-5 pt-5" id="exampleModalCenter" tabindex="-1"
+                                            role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div id="tblCustomers" class="card">
+                                                        <div class="card-body">
+                                                            <div class="container mb-5 mt-3">
+                                                                <div class="row d-flex align-items-baseline">
+                                                                    <div class="col-xl-9">
+                                                                        <p style="color: #7e8d9f;font-size: 20px;">
+                                                                            Order Id >>
+                                                                            <strong>{{orderDetails.[0].orderObj.orderId}}</strong>
+                                                                        </p>
+                                                                    </div>
+
+                                                                    <hr>
+                                                                </div>
+
+                                                                <div class="container">
+                                                                    <div class="col-md-12">
+                                                                        <div class="text-center">
+                                                                            <h4 class="py-4">CodeStore</h4>
+                                                                        </div>
+
+                                                                    </div>
+
+
+                                                                    <div class="row">
+                                                                        <div class="col-xl-8">
+                                                                            <ul class="list-unstyled">
+                                                                                <li class="text-muted my-2"><span style="font-weight: 600;">To:</span> 
+                                                                                    {{orderDetails.[0].orderObj.address.fname}}
+                                                                                    {{orderDetails.[0].orderObj.address.lname}},{{orderDetails.[0].orderObj.address.address}},{{orderDetails.[0].orderObj.address.city}},{{orderDetails.[0].orderObj.address.state}}
+                                                                                    <br>
+                                                                                    Pincode :
+                                                                                    {{orderDetails.[0].orderObj.address.pincode}}
+                                                                                    <br>
+                                                                                    Landmark :
+                                                                                    {{orderDetails.[0].orderObj.address.landmark}}
+                                                                                    <br>
+                                                                                    MobileNumber :
+                                                                                    {{orderDetails.[0].orderObj.address.mobileNumber}}
+                                                                                    <br>
+                                                                                    Email :
+                                                                                    {{orderDetails.[0].orderObj.address.email}}
+                                                                                    <br>
+                                                                                </li>
+
+                                                                            </ul>
+                                                                        </div>
+                                                                        <div class="col-xl-4">
+
+                                                                            <ul class="list-unstyled">
+
+                                                                                <li class="text-muted">
+                                                                                    <span style="font-weight: 600;" class="fw-bold">Creation Date:
+                                                                                    </span>
+                                                                                    {{orderDetails.[0].date}}
+                                                                                <li>
+                                                                                <li class="text-muted"><span style="font-weight: 600;"
+                                                                                        class="fw-bold">Payment Method:
+                                                                                    </span>
+                                                                                    {{orderDetails.[0].orderObj.payment_method}}
+                                                                                </li>
+
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row my-2 mx-1 justify-content-center">
+                                                                        <table
+                                                                            class="table table-striped table-borderless">
+                                                                            <thead style="background-color:#84B0CA ;"
+                                                                                class="text-white">
+                                                                                <tr>
+
+                                                                                    <th scope="col">Product</th>
+                                                                                    <th scope="col">Qty</th>
+                                                                                    <th scope="col">Price</th>
+                                                                                    <th scope="col">Total Amount</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr>
+
+                                                                                    <td> {{orderDetails.[0].product.name}}
+                                                                                    </td>
+                                                                                    <td> {{orderDetails.[0].orderObj.products.quantity}}
+                                                                                    </td>
+                                                                                    <td><span
+                                                                                            style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">₹</span>{{orderDetails.[0].product.price}}
+                                                                                    </td>
+                                                                                    <td><span
+                                                                                            style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                                                                                            ₹
+                                                                                        </span> {{orderDetails.[0].productTotal}}
+                                                                                    </td>
+                                                                                </tr>
+
+                                                                            </tbody>
+
+                                                                        </table>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        
+                                                                        <div class="col-xl-3">
+                                                                            
+                                                                       <h4><span class="text-muted">Total: </span>₹ {{orderDetails.[0].productTotal}}</h4>
+                                                                        </div>
+                                                                    </div>
+                                                                    <hr>
+                                                                    <div class="row">
+                                                                        
+                                                                        <div class="col-xl-2">
+                                                                            <button type="button" id="btnExport"
+                                                                                class="btn btn-primary text-capitalize"
+                                                                                style="background-color:#60bdf3 ;">Download Pdf</button>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- - -->
+                    <div class="tab-pane fade" id="reviews" role="tabpanel">
+                        <div class="row">
+                            <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
+                                <div class="container">
+                                    <div class="row">
+                                        {{#if orderDetails.[0].orderObj.pending}}
+                                        <div class="col-12 col-md-10 hh-grayBox pt45 pb20 bg-light">
+                                            <div class="row justify-content-between">
+                                                <div class="order-tracking completed">
+                                                    <span class="is-complete"></span>
+                                                    <p>Placed</p>
+                                                </div>
+                                                <div class="order-tracking ">
+                                                    <span class="is-complete"></span>
+                                                    <p>Shipped</p>
+                                                </div>
+                                                <div class="order-tracking ">
+                                                    <span class="is-complete"></span>
+                                                    <p>Delivered</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        {{else if orderDetails.[0].orderObj.shipping}}
+                                        <div class="col-12 col-md-10 hh-grayBox pt45 pb20 bg-light">
+                                            <div class="row justify-content-between">
+                                                <div class="order-tracking completed">
+                                                    <span class="is-complete"></span>
+                                                    <p>Placed</p>
+                                                </div>
+                                                <div class="order-tracking completed">
+                                                    <span class="is-complete"></span>
+                                                    <p>Shipped</p>
+                                                </div>
+                                                <div class="order-tracking ">
+                                                    <span class="is-complete"></span>
+                                                    <p>Delivered</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        {{else if orderDetails.[0].orderObj.delivered}}
+                                        <div class="col-12 col-md-10 hh-grayBox pt45 pb20 bg-light">
+                                            <div class="row justify-content-between">
+                                                <div class="order-tracking completed">
+                                                    <span class="is-complete"></span>
+                                                    <p>Placed</p>
+                                                </div>
+                                                <div class="order-tracking completed">
+                                                    <span class="is-complete"></span>
+                                                    <p>Shipped</p>
+                                                </div>
+                                                <div class="order-tracking completed">
+                                                    <span class="is-complete"></span>
+                                                    <p>Delivered</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        {{else if orderDetails.[0].orderObj.cancelled}}
+                                        <div class="col-12 col-md-10 hh-grayBox pt45 pb20 bg-light">
+                                            <div class="row justify-content-between">
+                                                <div class="order-tracking completed">
+                                                    <span class="is-complete"></span>
+                                                    <p>Placed</p>
+                                                </div>
+                                                <div class="order-tracking completed">
+                                                    <span class="is-complete"></span>
+                                                    <p>Cancelled</p>
+                                                </div>
+                                                <div class="order-tracking completed">
+                                                    <span class="is-complete"></span>
+                                                    <p>Cancelled</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        {{/if}}
+                                      
+                                    </div>
+                                    {{#if orderDetails.[0].orderObj.cancelled}}
+
+                                    {{else if orderDetails.[0].orderObj.delivered}}
+                                    {{else}}
+                                    <button
+                                        onclick="cancelOrder('{{orderDetails.[0]._id}}','{{orderDetails.[0].orderObj.products.item}}')"
+                                        class="btn btn-danger">Cancel Order</button>
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{{/if}}
+
+<script>
+    function cancelOrder(orderId, proId) {
+        Swal.fire({
+            title: 'Are you sure to cancel Order?',
+            text: "You are about to cancel the order, you cannot undo this action.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonText: 'No',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Cancel it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: '/cancelOrder',
+                    method: 'post',
+                    data: {
+                        orderId: orderId,
+                        proId: proId
+                    },
+                    success: (response) => {
+                        Swal.fire({
+                            title: 'Canceled!',
+                            text: "Your order has been cancelled.",
+                            icon: 'success',
+
+                            confirmButtonColor: '#3085d6',
+
+                            confirmButtonText: 'Ok'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.reload()
+                            }
+                        })
+                    }
+                })
+
+            }
+        })
+    }
+</script>
+     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script type="text/javascript">
+        $("body").on("click", "#btnExport", function () {
+            html2canvas($('#tblCustomers')[0], {
+                onrendered: function (canvas) {
+                    var data = canvas.toDataURL();
+                    var docDefinition = {
+                        content: [{
+                            image: data,
+                            width: 500
+                        }]
+                    };
+                    pdfMake.createPdf(docDefinition).download("CodeStore Invoice.pdf");
+                }
+            });
+        });
+    </script>

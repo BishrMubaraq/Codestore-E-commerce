@@ -1,0 +1,158 @@
+<section>
+  <div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><a href="/vendor/products"><span class="text-muted fw-light">Products/</span></a>
+      Edit Product</h4>
+
+    <!-- Basic Layout & Basic with Icons -->
+    <div class="row">
+      <!-- Basic Layout -->
+      <div class="col-xxl">
+        <div class="card mb-4">
+          <div class="card-header d-flex align-items-center justify-content-between">
+            <h5 class="mb-0">Edit Product</h5>
+          </div>
+          <div class="card-body">
+            {{#if product}}
+            <form id="editProduct" action="/vendor/edit-product?id={{product._id}}" method="post"
+              enctype="multipart/form-data">
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="basic-default-name">Name</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" required name="name" value="{{product.name}}" />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="basic-default-company">Price</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" required name="price" value="{{product.price}}" />
+                </div>
+              </div>
+              <div class="row mb-4">
+                <label class="col-sm-2 col-form-label" for="basic-default-email">Category</label>
+                <div class="col-sm-10">
+
+                  <select required name="category" class="form-select mb-3" id="exampleFormControlSelect1"
+                    aria-label="Default select example">
+                    <option value="{{product.category}}" selected hidden>{{product.category}}</option>
+                    {{#each categories}}
+                    <option value="{{this.name}}">{{this.name}}</option>
+                    {{/each}}
+                  </select>
+
+                </div>
+                <input type="text" name="deleteStatus" value="false" hidden>
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label" for="basic-default-phone">XS stocks</label>
+                  <div class="col-sm-10">
+                    <input type="number" name="xs_stock" class="form-control phone-mask"
+                      aria-describedby="basic-default-phone" value="{{product.xs-stocks}}" required />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label" for="basic-default-phone">S stocks</label>
+                  <div class="col-sm-10">
+                    <input type="number" name="s_stock" class="form-control phone-mask"
+                      aria-describedby="basic-default-phone" value="{{product.s-stocks}}" required />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label" for="basic-default-phone">M stocks</label>
+                  <div class="col-sm-10">
+                    <input type="number" name="m_stock" class="form-control phone-mask"
+                      aria-describedby="basic-default-phone" value="{{product.m-stocks}}" required />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label" for="basic-default-phone">L stocks</label>
+                  <div class="col-sm-10">
+                    <input type="number" name="l_stock" class="form-control phone-mask"
+                      aria-describedby="basic-default-phone" value="{{product.l-stocks}}" required />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label" for="basic-default-phone">XL stocks</label>
+                  <div class="col-sm-10">
+                    <input type="number" name="xl_stock" class="form-control phone-mask"
+                      aria-describedby="basic-default-phone" value="{{product.xl-stocks}}" required />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label" for="basic-default-phone">XXL stocks</label>
+                  <div class="col-sm-10">
+                    <input type="number" name="xxl_stock" class="form-control phone-mask"
+                      aria-describedby="basic-default-phone" value="{{product.xxl-stocks}}" required />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label" for="basic-default-phone">Offer</label>
+                  <div class="col-sm-10">
+                    <input type="number" name="offer" class="form-control phone-mask"
+                      aria-describedby="basic-default-phone" value="{{product.offer}}" required />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label" for="basic-default-phone">Material</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="material" class="form-control phone-mask"
+                      aria-describedby="basic-default-phone" value="{{product.material}}" required />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label" for="basic-default-message">Description</label>
+                  <div class="col-sm-10">
+                    <textarea required name="description" class="form-control"
+                      aria-describedby="basic-icon-default-message2">{{product.description}}</textarea>
+                  </div>
+                </div>
+                <div class="row mb-5">
+                  <label class="col-sm-2 col-form-label" for="basic-default-message">Image 1</label>
+                  <div class="col-sm-10">
+                    <img id="imgView1" class="p-1" width="200px" height="200px"
+                      src="/public/product-images/{{product.images.[0]}}">
+                    <input type="file" name="image" class="form-control" required accept=".jpg,.jpeg,.png,.gif"
+                      onchange="viewImage1(event)">
+                  </div>
+
+                </div>
+                <div class="row mb-5">
+                  <label class="col-sm-2 col-form-label" for="basic-default-message">Image 2</label>
+                  <div class="col-sm-10">
+                    <img id="imgView2" class="p-1" width="200px" height="200px"
+                      src="/public/product-images/{{product.images.[1]}}">
+                    <input type="file" name="image" class="form-control" required accept=".jpg,.jpeg,.png,.gif"
+                      onchange="viewImage2(event)">
+                  </div>
+
+                </div>
+                <div class="row mb-5">
+                  <label class="col-sm-2 col-form-label" for="basic-default-message">Image 3</label>
+                  <div class="col-sm-10">
+                    <img id="imgView3" class="p-1" width="200px" height="200px"
+                      src="/public/product-images/{{product.images.[2]}}">
+                    <input type="file" name="image" class="form-control" required accept=".jpg,.jpeg,.png,.gif"
+                      onchange="viewImage3(event)">
+                  </div>
+
+                </div>
+                <div class="row justify-content-end">
+                  <div class="col-sm-10 pt-3">
+                    <button type="submit" class="btn btn-success">Add</button>
+                  </div>
+                </div>
+            </form>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+<script>
+  $("#editProduct").validate();
+</script>
+<script src="/public/javascripts/viewImage.js">
+
+</script>

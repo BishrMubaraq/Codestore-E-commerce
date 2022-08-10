@@ -1,0 +1,87 @@
+<!-- Content -->
+<section>
+  <div class="container-xxl">
+    <div class="authentication-wrapper authentication-basic container-p-y">
+      <div class="authentication-inner">
+        <!-- Register -->
+        <div class="card">
+          <div class="card-body">
+            <!-- Logo -->
+            <div class="app-brand justify-content-center">
+              <a href="/" class="app-brand-link gap-2">
+                <span
+                  class="app-brand-text h3 text-body fw-bolder"
+                >CodeStore</span>
+              </a>
+            </div>
+            <!-- /Logo -->
+            <h4 class="mb-2">Welcome to CodeStore! 👋</h4>
+            <p class="mb-4">Please sign-in to your account and Enjoy Shopping🛍️
+            </p>
+
+            <form id="userLogin" class="mb-3" action="/signin" method="post">
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                  placeholder="Enter your email"
+                  required
+                  autofocus
+                />
+              </div>
+              <div class="mb-3 form-password-toggle">
+                <div class="d-flex justify-content-between">
+                  <label class="form-label" for="password">Password</label>
+                  <a href="/change-password">
+                    <small>Forgot Password?</small>
+                  </a>
+                </div>
+                <div>
+                  <input
+                    type="password"
+                    id="password"
+                    class="form-control"
+                    name="password"
+                    placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                    required
+                  />
+
+                </div>
+                {{#if loginErr}}
+                  <small class="text-danger mb-2">{{loginErr}}.</small>
+                {{/if}}
+              </div>
+              <div class="mb-3">
+                <button class="btn btn-primary d-grid w-100" type="submit">Sign
+                  in</button>
+              </div>
+            </form>
+
+            <p class="text-center">
+              <span>New on CodeStore?</span>
+              <a href="/signup">
+                <span>Signup</span>
+              </a>
+            </p>
+          </div>
+        </div>
+        <!-- /Register -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+></script>
+<script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"
+></script>
+<script>
+  $("#userLogin").validate();
+</script>

@@ -1,0 +1,129 @@
+{{#if cartProducts}}
+<!-- Shoping Cart -->
+<div class="bg0 p-t-100">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
+				<div class="m-l-25 m-r--38 m-lr-0-xl">
+					<div class="wrap-table-shopping-cart">
+						<table id="cart" class="table-shopping-cart">
+							<tr class="table_head">
+								<th class="column-1">Product</th>
+								<th class="column-2">Name</th>
+								<th class="column-2">Price</th>
+								<th class="column-2">Quantity</th>
+								<th class="column-5">Total</th>
+							</tr>
+							{{#each cartProducts}}
+
+							<tr class="table_row">
+
+								<td class="column-1">
+									<a href="#">
+										<div class="how-itemcart1">
+											<img src="/public/product-images/{{this.product.images.[0]}}" alt="IMG">
+										</div>
+									</a>
+								</td>
+								<td class="column-2">{{this.product.name}}</td>
+								<td class="column-3"><span
+										style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+										₹
+									</span> {{this.product.price}}</td>
+
+								<td class="column-4">
+									{{!-- <div class="wrap-num-product flex-w m-l-auto m-r-0">
+										<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+											<i class="fs-16 zmdi zmdi-minus"></i>
+										</div>
+
+										<input class="mtext-104 cl3 txt-center num-product" type="number"
+											name="num-product1" value="{{this.quantity}}">
+
+										<div onclick="" class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+											<i class="fs-16 zmdi zmdi-plus"></i>
+										</div>
+									</div> --}}
+									<div class="d-flex">
+										<button
+											onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user._id}}',-1)"
+											class="btn btn-secondary">-</button>
+										<div id="{{this.product._id}}" class="p-2">{{this.quantity}}
+										</div>
+										<button
+											onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user._id}}',1)"
+											class="btn btn-secondary">+</button>
+									</div>
+								</td>
+								<td  class="column-5"><span
+										style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+										₹
+									</span> <span id="productTotal">{{this.productTotal}}</span></td>
+								<td class="column-4">
+									<a href="/delete-from-cart?id={{this.product._id}}">
+										<div style="cursor: pointer;" class="cl8 trans-04 flex-c-m">
+											<i class="fs-16 zmdi zmdi-close"></i>
+										</div>
+									</a>
+								</td>
+							</tr>
+							{{/each}}
+
+						</table>
+					</div>
+
+					<div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm d-flex">
+						<a href="/checkout">
+							<div
+								class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
+								Place Order
+							</div>
+						</a>
+						<div class="flex-c-m stext-101 cl2 size-119">
+							Total : <span style="font-weight: 600;"> <span
+									style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"> ₹
+								</span>
+								<span id="total">{{totalAmount}}
+								</span></span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	{{else}}
+	<section>
+		<div class="container p-5 mt-5">
+			<h1 style="font-size: 2rem; font-weight: 600;" class="text-center">No Cart Items</h1>
+			<img class="img-fluid" style="display: block;margin-left:auto;margin-right: auto;"
+				src="/public/codeStoreImages/cart-empty-illustration.jpg" alt="no cart items">
+		</div>
+	</section>
+	{{/if}}
+	<script>
+		function changeQuantity(cartId, proId, userId, count) {
+			let quantity = parseInt(document.getElementById(proId).innerHTML)
+			$.ajax({
+				url: '/change-product-quantity',
+				data: {
+					cart: cartId,
+					product: proId,
+					user: userId,
+					count: count,
+					quantity: quantity
+				},
+				method: 'post',
+				success: (response) => {
+					if (response.removeProduct) {
+						location.reload()
+					} else {
+						document.getElementById(proId).innerHTML = quantity + count
+						document.getElementById('total').innerHTML = response.total
+						$( "#productTotal" ).load(window.location.href + " #productTotal" );
+					}
+					
+				}
+			})
+		}
+	</script>

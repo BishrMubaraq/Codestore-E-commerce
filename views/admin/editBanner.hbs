@@ -1,0 +1,158 @@
+<section>
+  <div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><a href="/admin/banner"><span
+        class="text-muted fw-light"
+      >Banners/</span></a>
+      Edit Banner</h4>
+
+    <!-- Basic Layout & Basic with Icons -->
+    <div class="row">
+      <!-- Basic Layout -->
+      <div class="col-xxl">
+        <div class="card mb-4">
+          <div
+            class="card-header d-flex align-items-center justify-content-between"
+          >
+            <h5 class="mb-0">Edit Product</h5>
+          </div>
+          <div class="card-body">
+            <form id="addBanner" action="/admin/edit-banner?id={{bannerData._id}}" method="post" enctype="multipart/form-data">
+              <div class="row mb-3">
+                <label
+                  class="col-sm-2 col-form-label"
+                  for="basic-default-name"
+                >Main Text</label>
+                <div class="col-sm-10">
+                  <input
+                    type="text"
+                    class="form-control"
+                    required
+                    name="mainText"
+                    value="{{bannerData.mainText}}"
+                    
+                  />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label
+                  class="col-sm-2 col-form-label"
+                  for="basic-default-company"
+                >Sub Text</label>
+                <div class="col-sm-10">
+                  <input
+                    type="text"
+                    class="form-control"
+                required
+                    name="subText"
+                    value="{{bannerData.subText}}"
+                    
+                  />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label
+                  class="col-sm-2 col-form-label"
+                  for="basic-default-company"
+                >Text Color</label>
+                <div class="col-sm-10">
+                  <input
+                    type="color"
+                    class="form-control"
+                    required
+                    value="{{bannerData.textColor}}"
+                    name="textColor"
+                    
+                  />
+                </div>
+              </div>
+               <div class="row mb-3">
+                <label
+                  class="col-sm-2 col-form-label"
+                  for="basic-default-company"
+                >URL</label>
+                <div class="col-sm-10">
+                  <input
+                    type="url"
+                    class="form-control"
+                    required
+                    name="url"
+                    value="{{bannerData.url}}"
+                  />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label
+                  class="col-sm-2 col-form-label"
+                  for="basic-default-company"
+                >Vendor Name</label>
+                <div class="col-sm-10">
+                  <input
+                    type="text"
+                    class="form-control"
+                    required
+                    name="vendorName"
+                    value="{{bannerData.vendorName}}"
+                  />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label
+                  class="col-sm-2 col-form-label"
+                  for="basic-default-company"
+                >Bussiness Name</label>
+                <div class="col-sm-10">
+                  <input
+                    type="text"
+                    class="form-control"
+                    required
+                    name="bussinessName"
+                    value="{{bannerData.bussinessName}}"
+                  />
+                </div>
+              </div>
+              
+              
+              <div class="row mb-3">
+                
+                <label
+                  class="col-sm-2 col-form-label"
+                  for="basic-default-message"
+                >Banner Image</label>
+                <div class="col-sm-10">
+                  <input
+                  type="file"
+                    name="image"
+                    class="form-control"
+                    accept=".jpg,.jpeg"
+                    required
+                    onchange="viewBanner(event)"
+                  >
+                  <img id="banner"  class="p-1" width="300px" src="/public/product-images/{{bannerData.bannerImage}}" >
+                </div>
+                
+              </div> 
+                
+              <div class="row justify-content-end">
+                <div class="col-sm-10">
+                  <button type="submit" class="btn btn-success">Edit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="/public/javascripts/viewImage.js"></script>
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+></script>
+<script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"
+></script>
+<script>
+  $("#addBanner").validate();
+</script>

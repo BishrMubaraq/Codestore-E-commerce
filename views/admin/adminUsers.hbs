@@ -1,0 +1,63 @@
+<section class="container-p-y container-xxl flex-grow-1">
+
+  <div class="card">
+
+    <h5 class="card-header">All Users</h5>
+
+    <div class="table-responsive text-nowrap p-4">
+      <table id="productTable" class="table p-3" style="width:100%">
+        <thead>
+          <tr>
+            <th>Sl no.</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Mobile Number</th>
+            <th>Status</th>
+            <th>Options</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each usersData}}
+          <tr>
+            <td>{{inc @index}}</td>
+            <td>{{name}}</td>
+            <td>{{email}}</td>
+            <td>{{mobileNumber}}</td>
+            {{#if status}}
+            <td><span class="badge bg-label-success me-1">Active</span></td>
+            <td>
+
+              <a href="/admin/block-user?id={{_id}}">
+                <button type="button" class="btn rounded-pill btn-icon btn-outline-danger" data-bs-toggle="tooltip"
+                  data-bs-placement="bottom" data-bs-title="Block">
+                  <span class="tf-icons bx bx-block"></span>
+                </button>
+              </a>
+            </td>
+            {{else}}
+            <td><span class="badge bg-label-danger me-1">Blocked</span></td>
+            <td>
+
+              <a href="/admin/unblock-user?id={{_id}}">
+                <button type="button" class="btn rounded-pill btn-icon btn-outline-success" data-bs-toggle="tooltip"
+                  data-bs-placement="bottom" data-bs-title="Unblock">
+                  <span class="tf-icons bx bxs-polygon"></span>
+                </button>
+              </a>
+            </td>
+            {{/if}}
+
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<script>
+  $(document).ready(function () {
+    $('#user_table').wrap('<div id="hide" style="display:none"/>');
+    $('#hide').css('display', 'block');
+  });
+  var table = $('#productTable').DataTable();
+</script>

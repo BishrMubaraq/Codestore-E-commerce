@@ -1,0 +1,70 @@
+<!-- Content page -->
+<section class="bg0 p-t-104 p-b-116">
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            <div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
+                <form id="userProfile" class="text-danger" action="/add-address" method="post">
+                    <h4 class="mtext-105 cl2 txt-center p-b-30">
+                        Shipping Address
+                    </h4>
+                    <label for="" class="text-dark">First Name<span class="text-danger">*</span></label>
+                    <div class="bor8 m-b-20 how-pos4-parent">
+                        <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="fname"
+                            placeholder="First Name" required minlength="3">
+                    </div>
+                    <label for="" class="text-dark">Last Name<span class="text-danger">*</span></label>
+                    <div class="bor8 m-b-20 how-pos4-parent">
+                        <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="lname"
+                            placeholder="Last Name" required minlength="3">
+                    </div>
+                    <label for="" class="text-dark">Email <span class="text-danger">*</span></label>
+                    <div class="bor8 m-b-20 how-pos4-parent">
+                        <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="email" name="email"
+                            placeholder="Email" required>
+                    </div>
+                    <label for="" class="text-dark">Mobile Number <span class="text-danger">*</span></label>
+                    <div class="bor8 m-b-20 how-pos4-parent">
+                        <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="tel" name="mobileNumber"
+                            placeholder="Mobile Number" required minlength="10" maxlength="10">
+                    </div>
+                    <label for="" class="text-dark">Address<span class="text-danger">*</span></label>
+                    <div class="bor8 m-b-20 how-pos4-parent">
+                        <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="address"
+                            placeholder="Address" required>
+                    </div>
+                    <label for="" class="text-dark">City<span class="text-danger">*</span></label>
+                    <div class="bor8 m-b-20 how-pos4-parent">
+                        <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="city"
+                            placeholder="City" required>
+                    </div>
+                    <label for="" class="text-dark">Landmark<span class="text-danger">*</span></label>
+                    <div class="bor8 m-b-20 how-pos4-parent">
+                        <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="landmark"
+                            placeholder="Landmark" required>
+                    </div>
+                    <label for="" class="text-dark">State<span class="text-danger">*</span></label>
+                    <div class="bor8 m-b-20 how-pos4-parent">
+                        <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="state"
+                            placeholder="State" required>
+                    </div>
+                    <label for="" class="text-dark">Pincode<span class="text-danger">*</span></label>
+                    <div class="bor8 m-b-20 how-pos4-parent">
+                        <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="number" name="pincode"
+                            placeholder="Pincode" required>
+                    </div>
+
+
+                    <button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
+                        Add Address
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+<script>
+    $("#userProfile").validate();
+</script>

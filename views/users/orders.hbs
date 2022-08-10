@@ -1,0 +1,80 @@
+<div class="container">
+	<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-100 p-lr-0-lg">
+		<a href="/" class="stext-120 cl4 hov-cl1 trans-04">
+			Home
+			<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+		</a>
+		<a href="/orders" class="stext-120 cl8 hov-cl1 trans-04">
+			Orders
+			<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+		</a>
+
+	</div>
+</div>
+<div class="bg0 p-t-50 p-b-85">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
+				<div class="m-l-25 m-r--38 m-lr-0-xl">
+					<div class="wrap-table-shopping-cart">
+						<table id="cart" class="table-shopping-cart">
+							<tr class="table_head">
+								<th class="column-1">Product</th>
+								<th class="column-2">Name</th>
+								<th class="column-3">Price</th>
+								<th class="column-3">Status</th>
+								<th class="column-2">Date</th>
+
+							</tr>
+
+							{{#each orderDetails}}
+							<tr class="table_row">
+
+								<td class="column-1">
+									<a href="#">
+										<div class="how-itemcart1">
+											<img src="/public/product-images/{{this.productDetails.[0].images.[0]}}"
+												alt="IMG">
+										</div>
+									</a>
+								</td>
+								<td class="column-2">{{this.productDetails.[0].name}}</td>
+								<td class="column-3"><span
+										style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+										₹
+									</span> {{this.productDetails.[0].price}}</td>
+								{{#if this.orderObj.pending}}
+								<td><span >{{this.orderObj.products.status}}</span></td>
+								{{else if this.orderObj.shipping}}
+								<td><span >Shipped</span></td>
+								{{else if this.orderObj.delivered}}
+								<td><span >Delivered</span></td>
+								{{else if this.orderObj.cancelled}}
+								<td><span>Cancelled</span></td>
+								{{/if}}
+
+
+								<td class="column-2">
+									{{this.date}}
+								</td>
+								<td class="column-3">
+									<a href="/orderDetails?orderId={{this._id}}&proId={{this.productDetails.[0]._id
+                                    }}">
+										<div style="cursor: pointer;" class="cl8 trans-04 flex-c-m">
+											<i class="fs-16 zmdi zmdi-eye"></i>
+										</div>
+									</a>
+								</td>
+							</tr>
+							{{/each}}
+
+
+						</table>
+					</div>
+
+
+				</div>
+			</div>
+
+		</div>
+	</div>

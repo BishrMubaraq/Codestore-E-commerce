@@ -1,0 +1,113 @@
+<section>
+  <div class="container-xxl">
+    <div class="authentication-wrapper authentication-basic container-p-y">
+      <div class="authentication-inner">
+        <!-- Register Card -->
+        <div class="card">
+          <div class="card-body">
+            <!-- Logo -->
+            <div class="app-brand justify-content-center">
+              <a href="/" class="app-brand-link gap-2">
+                <span class="app-brand-text h3 text-body fw-bolder">CodeStore</span>
+              </a>
+            </div>
+            <!-- /Logo -->
+            <h4 class="mb-2">Welcome to CodeStore !</h4>
+            <p class="mb-4">Make your Shopping experience easy and fun!</p>
+
+            <form id="userSignup" class="mb-3 text-danger" style="font-size: 13px;" action="/signup" method="post">
+              <div class="mb-3">
+                <label for="username" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Name" autofocus />
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" />
+                {{#if signupErr}}
+                <small class="text-danger">{{signupErr}}</small>
+                {{/if}}
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Mobile Number</label>
+                <input type="tel" class="form-control" id="mobileNumber" name="phone"
+                  placeholder="Enter your Mobile Number" />
+                {{#if signupErr}}
+                <small class="text-danger">{{signupErr}}</small>
+                {{/if}}
+              </div>
+
+              <div class="mb-3 form-password-toggle">
+                <label class="form-label" for="password">Password</label>
+                <div>
+                  <input type="password" id="password" class="form-control" name="password"
+                    placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
+                </div>
+              </div>
+              <div class="mb-3 form-password-toggle">
+                <label class="form-label" for="password">Confirm Password</label>
+                <div>
+                  <input type="password" id="Confirmpassword" class="form-control" name="c_password"
+                    placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
+                </div>
+              </div>
+              <button class="btn btn-primary d-grid w-100">Sign up</button>
+            </form>
+
+            <p class="text-center">
+              <span>Already have an account?</span>
+              <a href="/signin">
+                <span>Sign in</span>
+              </a>
+            </p>
+          </div>
+        </div>
+        <!-- Register Card -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.js"></script>
+<script>
+
+  $("#userSignup").validate({
+    errorClass: "valierrors",
+
+    rules: {
+      name: {
+        required: true,
+        minlength: 3
+      },
+
+      email: {
+        required: true,
+        email: true
+      },
+
+      phone: {
+        required: true,
+        minlength: 10,
+        maxlength: 10
+      },
+
+      password: {
+        required: true,
+        minlength: 5
+
+      },
+      c_password: {
+        required: true,
+        equalTo: '#password'
+      }
+    },
+    messages: {
+      c_password: {
+        equalTo: "Passwords are not match"
+      }
+    }
+  })
+
+
+</script>

@@ -1,0 +1,56 @@
+<section class="container-p-y container-xxl flex-grow-1">
+
+  <div class="card">
+
+    <h5 class="card-header">All Products</h5>
+
+    <div class="table-responsive text-nowrap p-4">
+      <table id="productTable" class="table p-3" style="width:100%">
+        <thead>
+          <tr>
+            <th>Sl no.</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Images</th>
+            <th>Vendor Name</th>
+            <th>Bussiness Name</th>
+            <th>Options</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each products}}
+          <tr>
+            <td>{{inc @index}}</td>
+            <td>{{name}}</td>
+            <td>{{price}}</td>
+            <td>
+              <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-start">
+                <li class="avatar avatar-xl pull-up">
+                  <img src="/public/product-images/{{images.[0]}}" alt="productImage" />
+                </li>
+              </ul>
+            </td>
+            <td><span>{{vendorName}}</span></td>
+            <td><span class="badge bg-label-primary me-1">{{vendorBussinessName}}</span></td>
+            <td>
+
+              <a href="/admin/delete-product?id={{_id}}">
+                <button type="button" class="btn rounded-pill btn-icon btn-outline-danger">
+                  <span class="tf-icons bx bx-trash"></span>
+                </button>
+              </a>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<script>
+  $(document).ready(function () {
+    $('#user_table').wrap('<div id="hide" style="display:none"/>');
+    $('#hide').css('display', 'block');
+  });
+  var table = $('#productTable').DataTable();
+</script>

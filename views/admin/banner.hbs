@@ -1,0 +1,68 @@
+<section class="container-p-y container-xxl flex-grow-1">
+  <div class="d-flex align-items-end justify-content-end">
+    <a href="/admin/add-banner">
+      <button type="button" class="btn rounded-pill btn-outline-success my-3">
+        <span class="tf-icons bx bx-image"></span>
+        Add Banner
+      </button>
+    </a>
+  </div>
+  <div class="card">
+
+    <h5 class="card-header">All Banners</h5>
+
+    <div class="table-responsive text-nowrap p-4">
+      <table id="productTable" class="table p-3" style="width:100%">
+        <thead>
+          <tr>
+            <th>Sl no.</th>
+            <th>Main Text</th>
+            <th>Sub Text</th>
+            <th>Image</th>
+            <th>Vendor Name</th>
+            <th>Bussiness Name</th>
+            <th>Options</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each banners}}
+          <tr>
+            <td>{{inc @index}}</td>
+            <td>{{mainText}}</td>
+            <td>{{subText}}</td>
+            <td>
+              <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-start">
+                <li>
+                  <img width="100px" src="/public/product-images/{{bannerImage}}" alt="productImage" />
+                </li>
+              </ul>
+            </td>
+            <td>{{vendorName}}</td>
+            <td><span class="badge bg-label-primary me-1">{{bussinessName}}</span></td>
+            <td> <a href="/admin/edit-banner?id={{_id}}">
+                <button type="button" class="btn rounded-pill btn-icon btn-outline-primary">
+                  <span class="tf-icons bx bx-edit"></span>
+                </button>
+              </a>
+
+              <a href="/admin/delete-banner?id={{_id}}">
+                <button type="button" class="btn rounded-pill btn-icon btn-outline-danger">
+                  <span class="tf-icons bx bx-trash"></span>
+                </button>
+              </a>
+            </td>
+
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<script>
+  $(document).ready(function () {
+    $('#user_table').wrap('<div id="hide" style="display:none"/>');
+    $('#hide').css('display', 'block');
+  });
+  var table = $('#productTable').DataTable();
+</script>

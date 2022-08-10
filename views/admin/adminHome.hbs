@@ -1,0 +1,183 @@
+<!-- Content wrapper -->
+<div class="content-wrapper">
+  <!-- Content -->
+ 
+  <div class="container my-3">
+    <div class="row">
+      <div class="col card mx-4">
+        <div class="card-body">
+          <div class="card-title d-flex align-items-start justify-content-between">
+            <div class="avatar flex-shrink-0">
+              <i class='bx bxs-briefcase-alt bx-tada h2' style='color:#9f4adc' ></i>
+            </div>
+
+          </div>
+          <span class="fw-semibold d-block mb-1">Total Vendors</span>
+          <h3 class="card-title mb-2">{{totalVendors}}</h3>
+          {{!-- <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i>
+            +72.80%</small> --}}
+        </div>
+      </div>
+      <div class="col card mx-4">
+        <div class="card-body">
+          <div class="card-title d-flex align-items-start justify-content-between">
+            <div class="avatar flex-shrink-0">
+              <i class='bx bxs-group bx-tada h2' style='color:#1a74af' ></i>
+            </div>
+
+          </div>
+          <span class="fw-semibold d-block mb-1">Total Users</span>
+          <h3 class="card-title mb-2">{{totalUsers}}</h3>
+          {{!-- <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i>
+            +72.80%</small> --}}
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="container my-3">
+    <div class="row">
+      <div class="col card mx-4">
+        <div class="card-body">
+          <div class="card-title d-flex align-items-start justify-content-between">
+            <div class="avatar flex-shrink-0">
+              <i class='bx bxs-package bx-tada h2' style='color:#9ad349'  ></i>
+            </div>
+
+          </div>
+          <span class="fw-semibold d-block mb-1">Total Orders</span>
+          <h3 class="card-title mb-2">{{totalOrders}}</h3>
+          {{!-- <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i>
+            +72.80%</small> --}}
+        </div>
+      </div>
+      <div class="col card mx-4">
+        <div class="card-body">
+          <div class="card-title d-flex align-items-start justify-content-between">
+            <div class="avatar flex-shrink-0">
+              <i class='bx bxs-comment-x bx-tada h2' style='color:#d82b45' ></i>
+            </div>
+
+          </div>
+          <span class="fw-semibold d-block mb-1">Cancelled Orders</span>
+          <h3 class="card-title mb-2">{{totalCancelOrders}}</h3>
+          {{!-- <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i>
+            +72.80%</small> --}}
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+  <div class="container my-3">
+    <div class="row">
+
+
+      <div class="col card mx-4">
+        <div class="card-body">
+          <div class="card-title d-flex align-items-start justify-content-between">
+            <div class="avatar flex-shrink-0">
+              <i class='bx bxs-credit-card bx-flip-horizontal bx-tada h2' style='color:#e7b144'  ></i>
+            </div>
+
+          </div>
+          <span class="fw-semibold d-block mb-1">Online Payements</span>
+          <h3 class="card-title mb-2">{{totalOnlinePayment}}</h3>
+          
+        </div>
+
+      </div>
+      <div class="col card mx-4">
+        <div class="card-body">
+          <div class="card-title d-flex align-items-start justify-content-between">
+            <div class="avatar flex-shrink-0">
+              <i class='bx bx-money bx-tada bx-rotate-90 h2' style='color:#4dbf49' ></i>
+
+            </div>
+
+          </div>
+          <span class="fw-semibold d-block mb-1">COD</span>
+          <h3 class="card-title mb-2">{{totalCod}}</h3>
+       
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+
+
+
+  <div class="col-lg-8 mb-4 order-0">
+
+    <canvas id="myChart" style="width:100%;max-width:600rem"></canvas>
+  </div>
+  <div class="col-lg-8 mb-4 order-0">
+
+    <canvas id="myPieChart" style="width:100%;max-width:600rem"></canvas>
+  </div>
+
+</div>
+<!-- / Content -->
+
+
+
+
+<!-- Content wrapper -->
+
+
+
+<!-- / Layout wrapper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script>
+  var xValues = ["OnlinePayment", "COD", ];
+  var yValues = [{{totalOnlineMoney}},{{totalCodMoney}},];
+  var barColors = ["#e7b144", "#4dbf49", ];
+
+  new Chart("myChart", {
+    type: "bar",
+    data: {
+      labels: xValues,
+      datasets: [{
+        backgroundColor: barColors,
+        data: yValues
+      }]
+    },
+    options: {
+      legend: { display: false },
+      title: {
+        display: true,
+        text: "Payment Graphs of this Month"
+      }
+    }
+  });
+</script>
+<script>
+  var xValues = ["Pending", "Shipped", "Delivered", "Cancelled",];
+  var yValues = [{{totalPending}}, {{totalShipped}}, {{totalDelivered}}, {{totalCancelOrders}}];
+  var barColors = [
+    "#1a74af70",
+    "#4dbf45",
+    "#b7b7b5",
+    "#e8c3b9",
+  ];
+
+  new Chart("myPieChart", {
+    type: "doughnut",
+    data: {
+      labels: xValues,
+      datasets: [{
+        backgroundColor: barColors,
+        data: yValues
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: "Delivery Status"
+      }
+    }
+  });
+</script>

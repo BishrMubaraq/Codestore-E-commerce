@@ -1,0 +1,40 @@
+<section>
+  <div class="container-xxl">
+    <div class="authentication-wrapper authentication-basic container-p-y">
+      <div class="authentication-inner py-4">
+        <!-- Forgot Password -->
+        <div class="card">
+          <div class="card-body">
+            <!-- Logo -->
+            <div class="app-brand justify-content-center">
+              <a href="/" class="app-brand-link gap-2">
+                <span class="h3 fw-bolder">CodeStore</span>
+              </a>
+            </div>
+            <!-- /Logo -->
+            <h4 class="mb-2 text-center">OTP Verification !</h4>
+            <p class="mb-4 text-center">An OTP has been sent to your Mobile Number
+              please verify it below</p>
+            <form id="otp" class="mb-3" action="/otp-verification" method="post">
+              <div class="mb-3">
+                <input type="text" class="form-control" id="otp" name="otp" placeholder="Enter your OTP" required
+                  autofocus />
+                {{#if otpErr}}
+                <small class="text-danger">{{otpErr}}</small>
+                {{/if}}
+              </div>
+              <input type="submit" class="btn btn-primary d-grid w-100" value="Verify">
+            </form>
+            <div class="text-center">
+              <a href="/signup" class="d-flex align-items-center justify-content-center">
+                <i class="bx bx-chevron-left scaleX-n1-rtl bx-sm"></i>
+                Back to Signup
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- /Forgot Password -->
+      </div>
+    </div>
+  </div>
+</section>

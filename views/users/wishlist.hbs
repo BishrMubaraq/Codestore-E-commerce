@@ -1,0 +1,65 @@
+{{#if wishProducts}}
+<!-- Shoping Cart -->
+<form class="bg0 p-t-100 p-b-85">
+	<div class="container">
+
+		<div class="row">
+			<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
+				<div class="m-l-25 m-r--38 m-lr-0-xl">
+					<div class="wrap-table-shopping-cart">
+						<table class="table-shopping-cart">
+							<tr class="table_head">
+								<th class="column-1">Product</th>
+								<th class="column-2">Name</th>
+								<th class="column-3">Price</th>
+
+							</tr>
+
+							{{#each wishProducts}}
+							<tr class="table_row">
+
+								<td class="column-1">
+									<a href="/product-details?id={{this.product._id}}">
+										<div class="how-itemcart1">
+											<img src="/public/product-images/{{this.product.images.[0]}}" alt="IMG">
+										</div>
+									</a>
+								</td>
+
+								<td class="column-2"><a
+										href="/product-details?id={{this.product._id}}">{{this.product.name}}</a>
+								</td>
+
+								<td class="column-3">{{this.product.price}}</td>
+								<td class="column-4">
+									<a href="/delete-from-wishlist?id={{this.product._id}}">
+										<div style="cursor: pointer;" onclick="" class="cl8 trans-04 flex-c-m">
+											<i class="fs-16 zmdi zmdi-close"></i>
+										</div>
+									</a>
+								</td>
+
+							</tr>
+							{{/each}}
+
+						</table>
+					</div>
+
+
+				</div>
+			</div>
+
+
+		</div>
+
+	</div>
+</form>
+{{else}}
+<section>
+	<div class="container p-5 mt-5">
+		<h1 style="font-size: 2rem; font-weight: 600;" class="text-center">No Wishlist Items</h1>
+		<img class="img-fluid" style="display: block;margin-left:auto;margin-right: auto;"
+			src="/public/codeStoreImages/empty wishlist.jpg" alt="no cart items">
+	</div>
+</section>
+{{/if}}

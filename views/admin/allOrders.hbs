@@ -1,0 +1,144 @@
+<section class="container-p-y container-xxl flex-grow-1">
+
+    <div class="card">
+
+        <h5 class="card-header">All Orders</h5>
+
+        <div class="table-responsive text-nowrap p-4">
+            <table id="productTable" class="table p-3" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Sl no.</th>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th>Payment Method</th>
+                        <th>Status</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each allOrders}}
+                    <tr>
+                        <td>{{inc @index}}</td>
+                        <td>
+                            <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-start">
+                                <li class="avatar avatar-xl pull-up">
+                                    <img src="/public/product-images/{{this.product.images.[0]}}"
+                                        alt="productImage" />
+                                </li>
+                            </ul>
+                        </td>
+                        <td>{{this.product.name}}</td>
+                        <td>{{this.date}}</td>
+
+                        <td><span class="badge bg-label-primary me-1">{{this.orderObj.payment_method}}</span></td>
+
+                        {{#if this.orderObj.pending}}
+                        <td><span class="badge bg-label-info me-1">{{this.orderObj.products.status}}</span></td>
+                        {{else if this.orderObj.shipping}}
+                        <td><span class="badge bg-label-success me-1">Shipped</span></td>
+                        {{else if this.orderObj.delivered}}
+                        <td><span class="badge bg-label-secondary me-1">Delivered</span></td>
+                        {{else if this.orderObj.cancelled}}
+                        <td><span class="badge bg-label-Danger me-1">Cancelled</span></td>
+                        {{/if}}
+                        <td>
+                            <div class="modal fade" id="f{{this._id}}" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-xl" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel4">OrderId:
+                                                {{this.orderObj.orderId}}</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body table-responsive text-nowrap">
+                                            <table class="table p-3" style="width:100%">
+                                                <thead>
+                                                    <tr>
+
+                                                        <th>Price</th>
+                                                        <th>Quantity</th>
+                                                        <th>Size</th>
+                                                        <th>Total</th>
+                                                        <th>ShippingAddress</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr>
+
+                                                        <td>
+                                                          ₹  {{this.product.price}}
+                                                        </td>
+                                                        <td>{{this.orderObj.products.quantity}}</td>
+                                                        <td>{{this.orderObj.products.size}}</td>
+
+                                                        <td>
+                                                          ₹  {{this.productTotal}}
+                                                        </td>
+                                                        <td>
+                                                            {{this.orderObj.address.fname}}
+                                                            {{this.orderObj.address.lname}},
+                                                            {{this.orderObj.address.address}},{{this.orderObj.address.city}},
+                                                            {{this.orderObj.address.state}} <br>
+                                                            Pin: {{this.orderObj.address.pincode}}<br>
+                                                            Landmark: {{this.orderObj.address.landmark}}<br>
+                                                            MobileNumber: {{this.orderObj.address.mobileNumber}}<br>
+                                                            Email: {{this.orderObj.address.email}}
+                                                        </td>
+
+
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            {{!-- <button type="button" class="btn btn-outline-secondary"
+                                                data-bs-dismiss="modal">
+                                                Close
+                                            </button>
+                                            <button type="button" class="btn btn-primary">Save changes</button> --}}
+                                            <form action="/admin/allOrders" method="post">
+                                                <label for="" class="form-label mb-3 ">Status</label>
+                                                <select required name="status" class="form-select mb-3 "
+                                                    id="exampleFormControlSelect1" aria-label="Default select example">
+                                                    {{#if this.orderObj.cancelled}}
+                                                    <option value="" selected hidden>Cancelled</option>
+                                                    {{else if this.orderObj.delivered}}
+                                                    <option value="" selected hidden>Delivered</option>
+                                                    {{else}}
+                                                    <option value="" selected hidden>Change Status</option>
+                                                    <option value="cancelled" >Cancelled</option>
+                                                    {{/if}}
+                                                </select>
+                                                <input type="text" value="{{this._id}}" name="orderId" hidden>
+                                               
+                                                <button type="submit" class="btn btn-primary">Update</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn rounded-pill btn-icon btn-outline-primary"
+                                data-bs-toggle="modal" data-bs-target="#f{{this._id}}">
+                                <span class="tf-icons bx bx-show"></span>
+                            </button>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<script>
+    $(document).ready(function () {
+        $('#user_table').wrap('<div id="hide" style="display:none"/>');
+        $('#hide').css('display', 'block');
+    });
+    var table = $('#productTable').DataTable();
+</script>
