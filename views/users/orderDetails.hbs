@@ -65,7 +65,9 @@
                                         </span>
 
                                         <span class="stext-102 cl3 size-206">
-                                           <span style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">₹</span> {{orderDetails.[0].product.price}}
+                                            <span
+                                                style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">₹</span>
+                                            {{orderDetails.[0].product.price}}
                                         </span>
                                     </li>
                                     <li class="flex-w flex-t p-b-7">
@@ -93,7 +95,9 @@
                                         </span>
 
                                         <span class="stext-102 cl3 size-206">
-                                          <span style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">₹</span>  {{orderDetails.[0].productTotal}}
+                                            <span
+                                                style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">₹</span>
+                                            {{orderDetails.[0].productTotal}}
                                         </span>
                                     </li>
                                 </ul>
@@ -191,7 +195,8 @@
                                                                     <div class="row">
                                                                         <div class="col-xl-8">
                                                                             <ul class="list-unstyled">
-                                                                                <li class="text-muted my-2"><span style="font-weight: 600;">To:</span> 
+                                                                                <li class="text-muted my-2"><span
+                                                                                        style="font-weight: 600;">To:</span>
                                                                                     {{orderDetails.[0].orderObj.address.fname}}
                                                                                     {{orderDetails.[0].orderObj.address.lname}},{{orderDetails.[0].orderObj.address.address}},{{orderDetails.[0].orderObj.address.city}},{{orderDetails.[0].orderObj.address.state}}
                                                                                     <br>
@@ -216,11 +221,13 @@
                                                                             <ul class="list-unstyled">
 
                                                                                 <li class="text-muted">
-                                                                                    <span style="font-weight: 600;" class="fw-bold">Creation Date:
+                                                                                    <span style="font-weight: 600;"
+                                                                                        class="fw-bold">Creation Date:
                                                                                     </span>
                                                                                     {{orderDetails.[0].date}}
                                                                                 <li>
-                                                                                <li class="text-muted"><span style="font-weight: 600;"
+                                                                                <li class="text-muted"><span
+                                                                                        style="font-weight: 600;"
                                                                                         class="fw-bold">Payment Method:
                                                                                     </span>
                                                                                     {{orderDetails.[0].orderObj.payment_method}}
@@ -256,7 +263,8 @@
                                                                                     <td><span
                                                                                             style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
                                                                                             ₹
-                                                                                        </span> {{orderDetails.[0].productTotal}}
+                                                                                        </span>
+                                                                                        {{orderDetails.[0].productTotal}}
                                                                                     </td>
                                                                                 </tr>
 
@@ -265,19 +273,21 @@
                                                                         </table>
                                                                     </div>
                                                                     <div class="row">
-                                                                        
+
                                                                         <div class="col-xl-3">
-                                                                            
-                                                                       <h4><span class="text-muted">Total: </span>₹ {{orderDetails.[0].productTotal}}</h4>
+
+                                                                            <h4><span class="text-muted">Total: </span>₹
+                                                                                {{orderDetails.[0].productTotal}}</h4>
                                                                         </div>
                                                                     </div>
                                                                     <hr>
                                                                     <div class="row">
-                                                                        
+
                                                                         <div class="col-xl-2">
                                                                             <button type="button" id="btnExport"
                                                                                 class="btn btn-primary text-capitalize"
-                                                                                style="background-color:#60bdf3 ;">Download Pdf</button>
+                                                                                style="background-color:#60bdf3 ;">Download
+                                                                                Pdf</button>
                                                                         </div>
                                                                     </div>
 
@@ -378,7 +388,7 @@
 
                                         </div>
                                         {{/if}}
-                                      
+
                                     </div>
                                     {{#if orderDetails.[0].orderObj.cancelled}}
 
@@ -440,22 +450,23 @@
         })
     }
 </script>
-     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
-    <script type="text/javascript">
-        $("body").on("click", "#btnExport", function () {
-            html2canvas($('#tblCustomers')[0], {
-                onrendered: function (canvas) {
-                    var data = canvas.toDataURL();
-                    var docDefinition = {
-                        content: [{
-                            image: data,
-                            width: 500
-                        }]
-                    };
-                    pdfMake.createPdf(docDefinition).download("CodeStore Invoice.pdf");
-                }
-            });
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+<script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<script type="text/javascript">
+    $("body").on("click", "#btnExport", function () {
+        html2canvas($('#tblCustomers')[0], {
+            onrendered: function (canvas) {
+                var data = canvas.toDataURL();
+                var docDefinition = {
+                    content: [{
+                        image: data,
+                        width: 500
+                    }]
+                };
+                pdfMake.createPdf(docDefinition).download("CodeStore Invoice.pdf");
+            }
         });
-    </script>
+    });
+</script>

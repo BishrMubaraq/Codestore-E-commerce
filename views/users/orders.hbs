@@ -44,11 +44,11 @@
 										₹
 									</span> {{this.productDetails.[0].price}}</td>
 								{{#if this.orderObj.pending}}
-								<td><span >{{this.orderObj.products.status}}</span></td>
+								<td><span>{{this.orderObj.products.status}}</span></td>
 								{{else if this.orderObj.shipping}}
-								<td><span >Shipped</span></td>
+								<td><span>Shipped</span></td>
 								{{else if this.orderObj.delivered}}
-								<td><span >Delivered</span></td>
+								<td><span>Delivered</span></td>
 								{{else if this.orderObj.cancelled}}
 								<td><span>Cancelled</span></td>
 								{{/if}}

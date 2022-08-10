@@ -27,8 +27,7 @@
                         <td>
                             <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-start">
                                 <li class="avatar avatar-xl pull-up">
-                                    <img src="/public/product-images/{{this.product.images.[0]}}"
-                                        alt="productImage" />
+                                    <img src="/public/product-images/{{this.product.images.[0]}}" alt="productImage" />
                                 </li>
                             </ul>
                         </td>
@@ -36,8 +35,8 @@
                         <td>{{this.date}}</td>
 
                         <td><span class="badge bg-label-primary me-1">{{this.orderObj.payment_method}}</span></td>
-                        
-                         {{#if this.orderObj.pending}}
+
+                        {{#if this.orderObj.pending}}
                         <td><span class="badge bg-label-info me-1">{{this.orderObj.products.status}}</span></td>
                         {{else if this.orderObj.shipping}}
                         <td><span class="badge bg-label-success me-1">Shipped</span></td>
@@ -74,13 +73,13 @@
                                                     <tr>
 
                                                         <td>
-                                                          ₹  {{this.product.price}}
+                                                            ₹ {{this.product.price}}
                                                         </td>
                                                         <td>{{this.orderObj.products.quantity}}</td>
                                                         <td>{{this.orderObj.products.size}}</td>
 
                                                         <td>
-                                                           ₹ {{this.productTotal}}
+                                                            ₹ {{this.productTotal}}
                                                         </td>
                                                         <td>
                                                             {{this.orderObj.address.fname}}
@@ -111,17 +110,17 @@
                                                     id="exampleFormControlSelect1" aria-label="Default select example">
                                                     {{#if this.orderObj.pending}}
                                                     <option value="" selected hidden>Placed</option>
-                                                    <option value="shipped" >Shipped</option>
-                                                    <option value="delivered" >Delivered</option>
-                                                    <option value="cancelled" >Cancelled</option>
+                                                    <option value="shipped">Shipped</option>
+                                                    <option value="delivered">Delivered</option>
+                                                    <option value="cancelled">Cancelled</option>
                                                     {{else if this.orderObj.shipping}}
-                                                   <option value="" selected hidden>Shipped</option>
-                                                    <option value="delivered" >Delivered</option>
-                                                    <option value="cancelled" >Cancelled</option>
+                                                    <option value="" selected hidden>Shipped</option>
+                                                    <option value="delivered">Delivered</option>
+                                                    <option value="cancelled">Cancelled</option>
                                                     {{else if this.orderObj.delivered}}
-                                                   <option value="" selected hidden>Delivered</option>
-                                                   {{else if this.orderObj.cancelled}}
-                                                   <option value="" selected hidden>Cancelled</option>
+                                                    <option value="" selected hidden>Delivered</option>
+                                                    {{else if this.orderObj.cancelled}}
+                                                    <option value="" selected hidden>Cancelled</option>
                                                     {{/if}}
 
                                                 </select>

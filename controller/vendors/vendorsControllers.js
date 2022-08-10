@@ -19,7 +19,7 @@ module.exports = {
         }
 
     },
-    postSignin: (req, res,next) => {
+    postSignin: (req, res, next) => {
         vendorHelpers.doLogin(req.body).then((response) => {
             if (response.status) {
                 req.session.vendorLoggedIn = true
@@ -35,7 +35,7 @@ module.exports = {
                 }
 
             }
-        }).catch((err)=>{
+        }).catch((err) => {
             next(err)
         })
     },
@@ -45,72 +45,72 @@ module.exports = {
         if (vendorLogged) {
             res.redirect('/vendor')
         } else {
-            res.render('vendors/vendorSignup', { layout: 'loginLayout',signupErr:req.session.vendorSignupErr })
-            req.session.vendorSignupErr=false
+            res.render('vendors/vendorSignup', { layout: 'loginLayout', signupErr: req.session.vendorSignupErr })
+            req.session.vendorSignupErr = false
         }
     },
-    postSignup: async (req, res,next) => {
-        try{
-        let alreadyVendor = await vendorHelpers.alreadyVendor(req.body)
-        if (alreadyVendor.status) {
-            req.session.vendorSignupErr="Email or MobileNumber is already taken."
-            res.redirect('/vendor/signup')
-        } else {
-            vendorHelpers.doSignup(req.body).then((response) => {
-                req.session.vendorLoggedIn = true
-                req.session.vendorData = response.vendor
-                res.redirect('/vendor')
-            })
+    postSignup: async (req, res, next) => {
+        try {
+            let alreadyVendor = await vendorHelpers.alreadyVendor(req.body)
+            if (alreadyVendor.status) {
+                req.session.vendorSignupErr = "Email or MobileNumber is already taken."
+                res.redirect('/vendor/signup')
+            } else {
+                vendorHelpers.doSignup(req.body).then((response) => {
+                    req.session.vendorLoggedIn = true
+                    req.session.vendorData = response.vendor
+                    res.redirect('/vendor')
+                })
+            }
+        } catch (err) {
+            next(err)
         }
-    }catch(err){
-        next(err)
-    }
 
     },
 
     // Vendor Home
-    getHome: (req, res,next) => {
+    getHome: (req, res, next) => {
         let vendor = req.session.vendorData
-        Promise.all([adminHelpers.totalOrder(vendor._id),adminHelpers.totalCancelOrders(vendor._id),adminHelpers.totalOnlinePayments(vendor._id),adminHelpers.totalCod(vendor._id),adminHelpers.totalOnlineMoney(vendor._id),adminHelpers.totalCodMoney(vendor._id),adminHelpers.totalPending(vendor._id),adminHelpers.totalShipped(vendor._id),adminHelpers.totalDelivered(vendor._id)]).then((values)=>{
-            const[totalOrders,totalCancel,totalOnline,totalCod,totalOnlineMoney,totalCodMoney,totalPending,totalShipped,totalDelivered]=values
+        Promise.all([adminHelpers.totalOrder(vendor._id), adminHelpers.totalCancelOrders(vendor._id), adminHelpers.totalOnlinePayments(vendor._id), adminHelpers.totalCod(vendor._id), adminHelpers.totalOnlineMoney(vendor._id), adminHelpers.totalCodMoney(vendor._id), adminHelpers.totalPending(vendor._id), adminHelpers.totalShipped(vendor._id), adminHelpers.totalDelivered(vendor._id)]).then((values) => {
+            const [totalOrders, totalCancel, totalOnline, totalCod, totalOnlineMoney, totalCodMoney, totalPending, totalShipped, totalDelivered] = values
             vendorHelpers.vendorData(vendor._id).then((vendorData) => {
-                res.render('vendors/vendorHome', { layout: 'adminLayout', vendorData, vendor: true, vendorHome: true,totalOrders,totalCancel,totalOnline,totalCod,totalOnlineMoney,totalCodMoney,totalPending,totalShipped,totalDelivered })
+                res.render('vendors/vendorHome', { layout: 'adminLayout', vendorData, vendor: true, vendorHome: true, totalOrders, totalCancel, totalOnline, totalCod, totalOnlineMoney, totalCodMoney, totalPending, totalShipped, totalDelivered })
             })
-        }).catch((err)=>{
+        }).catch((err) => {
             next(err)
         })
-        
+
 
     },
     // Vendor Products
-    getProducts: async (req, res,next) => {
-        try{
-        let vendor = req.session.vendorData
-        let vendorData = await vendorHelpers.vendorData(vendor._id)
-        let vendorId = vendorData._id
-        productHelpers.getVendorProducts(vendorId).then((products) => {
-            res.render('vendors/vendorProducts', { layout: 'adminLayout', vendor: true, products, productManagement: true, vendorData })
-        })
-    }catch(err){
-        next(err)
-    }
+    getProducts: async (req, res, next) => {
+        try {
+            let vendor = req.session.vendorData
+            let vendorData = await vendorHelpers.vendorData(vendor._id)
+            let vendorId = vendorData._id
+            productHelpers.getVendorProducts(vendorId).then((products) => {
+                res.render('vendors/vendorProducts', { layout: 'adminLayout', vendor: true, products, productManagement: true, vendorData })
+            })
+        } catch (err) {
+            next(err)
+        }
 
     },
     // Vendor Add Products
-    getAddProduct: async (req, res,next) => {
-        try{
-        let vendor = req.session.vendorData
-        let vendorData = await vendorHelpers.vendorData(vendor._id)
-        categoryHelpers.getAllCategories().then((categories) => {
-            res.render('vendors/add-product', { layout: 'adminLayout', vendor: true, categories, vendorData })
-        })
-    }catch(err){
-        next(err)
-    }
+    getAddProduct: async (req, res, next) => {
+        try {
+            let vendor = req.session.vendorData
+            let vendorData = await vendorHelpers.vendorData(vendor._id)
+            categoryHelpers.getAllCategories().then((categories) => {
+                res.render('vendors/add-product', { layout: 'adminLayout', vendor: true, categories, vendorData })
+            })
+        } catch (err) {
+            next(err)
+        }
 
     },
 
-    postAddProduct: function (req, res,next) {
+    postAddProduct: function (req, res, next) {
         let vendor = req.session.vendorData
         let img = []
         if (req.files.length > 0) {
@@ -120,37 +120,37 @@ module.exports = {
         }
         productHelpers.addProduct(req.body, img, vendor).then((response) => {
             res.redirect('/vendor/add-product')
-        }).catch((err)=>{
+        }).catch((err) => {
             next(err)
         })
 
     },
     // Delete Products
-    getDelete: (req, res,next) => {
+    getDelete: (req, res, next) => {
         let proId = req.query.id
         productHelpers.deleteProducts(proId).then((response) => {
             res.redirect('/vendor/products')
-        }).catch((err)=>{
+        }).catch((err) => {
             next(err)
         })
     },
     // Edit  Products
-    getEdit: async (req, res,next) => {
-        try{
-        let vendor = req.session.vendorData
-        let vendorData = await vendorHelpers.vendorData(vendor._id)
-        let proId = req.query.id
-        productHelpers.getProduct(proId).then((product) => {
-            categoryHelpers.getAllCategories().then((categories) => {
-                res.render('vendors/edit-product', { layout: 'adminLayout', vendor: true, product, categories, vendorData })
+    getEdit: async (req, res, next) => {
+        try {
+            let vendor = req.session.vendorData
+            let vendorData = await vendorHelpers.vendorData(vendor._id)
+            let proId = req.query.id
+            productHelpers.getProduct(proId).then((product) => {
+                categoryHelpers.getAllCategories().then((categories) => {
+                    res.render('vendors/edit-product', { layout: 'adminLayout', vendor: true, product, categories, vendorData })
+                })
+
             })
-        
-        })
-    }catch(err){
-        next(err)
-    }
+        } catch (err) {
+            next(err)
+        }
     },
-    postEdit: (req, res,next) => {
+    postEdit: (req, res, next) => {
         let proId = req.query.id
         let img = []
         if (req.files) {
@@ -160,36 +160,36 @@ module.exports = {
         }
         productHelpers.updateProduct(proId, req.body, img).then((response) => {
             res.redirect('/vendor/products')
-        }).catch((err)=>{
+        }).catch((err) => {
             next(err)
         })
     },
     // Vendor Categories
-    getCategories: async (req, res,next) => {
-        try{
-        let vendor = req.session.vendorData
-        let vendorData = await vendorHelpers.vendorData(vendor._id)
-        categoryHelpers.getAllCategories().then((categories) => {
-            res.render('vendors/category', { layout: 'adminLayout', vendor: true, categories, categoryManagement: true, vendorData })
-        }).catch((err)=>{
-            next(err)
-        })
-    }catch(err){
-        next(err)
-    }
-    },
-    // Add category
-    getAddCategory: async (req, res,next) => {
-        try{
-        let vendor = req.session.vendorData
-        let vendorData = await vendorHelpers.vendorData(vendor._id)
-        res.render('vendors/add-category', { layout: 'adminLayout', vendor: true, vcategoryErr: req.session.vcategoryErr, vendorData })
-        req.session.vcategoryErr = false
-        }catch(err){
+    getCategories: async (req, res, next) => {
+        try {
+            let vendor = req.session.vendorData
+            let vendorData = await vendorHelpers.vendorData(vendor._id)
+            categoryHelpers.getAllCategories().then((categories) => {
+                res.render('vendors/category', { layout: 'adminLayout', vendor: true, categories, categoryManagement: true, vendorData })
+            }).catch((err) => {
+                next(err)
+            })
+        } catch (err) {
             next(err)
         }
     },
-    postAddCategory: (req, res,next) => {
+    // Add category
+    getAddCategory: async (req, res, next) => {
+        try {
+            let vendor = req.session.vendorData
+            let vendorData = await vendorHelpers.vendorData(vendor._id)
+            res.render('vendors/add-category', { layout: 'adminLayout', vendor: true, vcategoryErr: req.session.vcategoryErr, vendorData })
+            req.session.vcategoryErr = false
+        } catch (err) {
+            next(err)
+        }
+    },
+    postAddCategory: (req, res, next) => {
         categoryHelpers.addCategory(req.body).then((response) => {
             if (response.status) {
                 req.session.vcategoryErr = 'Category name already exist.'
@@ -199,27 +199,27 @@ module.exports = {
                 res.redirect('/vendor/add-category')
             }
 
-        }).catch((err)=>{
+        }).catch((err) => {
             next(err)
         })
     },
     // Edit category
-    getEditCategory: async (req, res,next) => {
-        try{
-        let vendor = req.session.vendorData
-        let vendorData = await vendorHelpers.vendorData(vendor._id)
-        categoryHelpers.getCategory(req.query.id).then((category) => {
-            res.render('vendors/edit-category', { layout: 'adminLayout', vendor: true, category, vcategoryErr: req.session.vcategoryErr, vendorData })
-            req.session.vcategoryErr = false
-        }).catch((err)=>{
+    getEditCategory: async (req, res, next) => {
+        try {
+            let vendor = req.session.vendorData
+            let vendorData = await vendorHelpers.vendorData(vendor._id)
+            categoryHelpers.getCategory(req.query.id).then((category) => {
+                res.render('vendors/edit-category', { layout: 'adminLayout', vendor: true, category, vcategoryErr: req.session.vcategoryErr, vendorData })
+                req.session.vcategoryErr = false
+            }).catch((err) => {
+                next(err)
+            })
+        } catch (err) {
             next(err)
-        })
-    }catch(err){
-        next(err)
-    }
+        }
 
     },
-    postEditCategory: (req, res,next) => {
+    postEditCategory: (req, res, next) => {
         categoryHelpers.updateCategory(req.body).then((response) => {
             if (response.status) {
                 req.session.vcategoryErr = 'Category name already exist.'
@@ -228,56 +228,56 @@ module.exports = {
                 res.redirect('/vendor/categories')
             }
 
-        }).catch((err)=>{
+        }).catch((err) => {
             next(err)
         })
     },
     // Delete Category
-    getDeleteCategory: (req, res,next) => {
+    getDeleteCategory: (req, res, next) => {
         categoryHelpers.deleteCategory(req.query.id).then(() => {
             res.redirect('/vendor/categories')
-        }).catch((err)=>{
+        }).catch((err) => {
             next(err)
         })
     },
     // Vendor Profile
-    getProfile: (req, res,next) => {
+    getProfile: (req, res, next) => {
         let vendor = req.session.vendorData
         vendorHelpers.vendorData(vendor._id).then((vendorData) => {
             res.render('vendors/vendorProfile', { layout: 'adminLayout', vendor, vendorData })
-        }).catch((err)=>{
+        }).catch((err) => {
             next(err)
         })
     },
-    postProfile: (req, res,next) => {
+    postProfile: (req, res, next) => {
         let vendor = req.session.vendorData
         if (req.file) {
             vendorHelpers.editProfileWithImage(vendor._id, req.body, req.file.filename).then(() => {
                 res.redirect('back')
-            }).catch((err)=>{
+            }).catch((err) => {
                 next(err)
             })
         } else {
             vendorHelpers.editProfile(vendor._id, req.body).then(() => {
                 res.redirect('back')
-            }).catch((err)=>{
+            }).catch((err) => {
                 next(err)
             })
         }
     },
     // Vendor Orders
-    getOrders:async(req,res,next)=>{
-        try{
-            let orders=await adminHelpers.getVendorsOrder(req.session.vendorData._id)
-            res.render('vendors/orders',{layout:'adminLayout',vendor:true,orders})
-        }catch(err){
+    getOrders: async (req, res, next) => {
+        try {
+            let orders = await adminHelpers.getVendorsOrder(req.session.vendorData._id)
+            res.render('vendors/orders', { layout: 'adminLayout', vendor: true, orders })
+        } catch (err) {
             next(err)
         }
-       
+
     },
-    postOrders:async(req,res,next)=>{
+    postOrders: async (req, res, next) => {
         try {
-            adminHelpers.changeOrderStatus(req.body.status,req.body.orderId).then(()=>{
+            adminHelpers.changeOrderStatus(req.body.status, req.body.orderId).then(() => {
                 res.redirect('back')
             })
         } catch (err) {

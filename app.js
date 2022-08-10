@@ -10,7 +10,7 @@ const nocache = require('nocache')
 const adminRouter = require('./routes/admin');
 const vendorRouter = require('./routes/vendor')
 const usersRouter = require('./routes/users');
-const dotenv=require('dotenv')
+const dotenv = require('dotenv')
 dotenv.config()
 
 

@@ -9,9 +9,7 @@
             <!-- Logo -->
             <div class="app-brand justify-content-center">
               <a href="/" class="app-brand-link gap-2">
-                <span
-                  class="app-brand-text h3 text-body fw-bolder"
-                >CodeStore</span>
+                <span class="app-brand-text h3 text-body fw-bolder">CodeStore</span>
               </a>
             </div>
             <!-- /Logo -->
@@ -22,15 +20,8 @@
             <form id="userLogin" class="mb-3" action="/signin" method="post">
               <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="email"
-                  name="email"
-                  placeholder="Enter your email"
-                  required
-                  autofocus
-                />
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required
+                  autofocus />
               </div>
               <div class="mb-3 form-password-toggle">
                 <div class="d-flex justify-content-between">
@@ -40,18 +31,12 @@
                   </a>
                 </div>
                 <div>
-                  <input
-                    type="password"
-                    id="password"
-                    class="form-control"
-                    name="password"
-                    placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                    required
-                  />
+                  <input type="password" id="password" class="form-control" name="password"
+                    placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" required />
 
                 </div>
                 {{#if loginErr}}
-                  <small class="text-danger mb-2">{{loginErr}}.</small>
+                <small class="text-danger mb-2">{{loginErr}}.</small>
                 {{/if}}
               </div>
               <div class="mb-3">
@@ -74,14 +59,9 @@
   </div>
 </section>
 
-<script
-  type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-></script>
-<script
-  type="text/javascript"
-  src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"
-></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
 <script>
   $("#userLogin").validate();
 </script>

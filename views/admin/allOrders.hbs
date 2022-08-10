@@ -24,8 +24,7 @@
                         <td>
                             <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-start">
                                 <li class="avatar avatar-xl pull-up">
-                                    <img src="/public/product-images/{{this.product.images.[0]}}"
-                                        alt="productImage" />
+                                    <img src="/public/product-images/{{this.product.images.[0]}}" alt="productImage" />
                                 </li>
                             </ul>
                         </td>
@@ -71,13 +70,13 @@
                                                     <tr>
 
                                                         <td>
-                                                          ₹  {{this.product.price}}
+                                                            ₹ {{this.product.price}}
                                                         </td>
                                                         <td>{{this.orderObj.products.quantity}}</td>
                                                         <td>{{this.orderObj.products.size}}</td>
 
                                                         <td>
-                                                          ₹  {{this.productTotal}}
+                                                            ₹ {{this.productTotal}}
                                                         </td>
                                                         <td>
                                                             {{this.orderObj.address.fname}}
@@ -112,11 +111,11 @@
                                                     <option value="" selected hidden>Delivered</option>
                                                     {{else}}
                                                     <option value="" selected hidden>Change Status</option>
-                                                    <option value="cancelled" >Cancelled</option>
+                                                    <option value="cancelled">Cancelled</option>
                                                     {{/if}}
                                                 </select>
                                                 <input type="text" value="{{this._id}}" name="orderId" hidden>
-                                               
+
                                                 <button type="submit" class="btn btn-primary">Update</button>
                                             </form>
                                         </div>

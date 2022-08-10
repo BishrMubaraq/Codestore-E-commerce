@@ -85,16 +85,17 @@ router.post('/add-banner', store.single('image'), adminController.postAddBanner)
 router.get('/edit-banner', verifyLogin, adminController.getEditBanner)
 
 router.post('/edit-banner', store.single('image'), adminController.postEditBanner)
+
 // Delete Banner
 router.get('/delete-banner', verifyLogin, adminController.getDeleteBanner)
 
 // All Admin Orders
-router.get('/orders',verifyLogin,adminController.getAdminOrders)
-router.post('/orders',verifyLogin,adminController.postAdminOrders)
+router.get('/orders', verifyLogin, adminController.getAdminOrders)
+router.post('/orders', verifyLogin, adminController.postAdminOrders)
 
 // All Orders
-router.get('/allOrders',verifyLogin,adminController.getAllOrders)
-router.post('/allOrders',verifyLogin,adminController.postAllOrders)
+router.get('/allOrders', verifyLogin, adminController.getAllOrders)
+router.post('/allOrders', verifyLogin, adminController.postAllOrders)
 
 // Admin Logout
 router.get('/logout', adminController.getLogout)

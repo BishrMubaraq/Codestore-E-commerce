@@ -20,7 +20,7 @@ module.exports = {
   },
 
 
-  postLogin: (req, res) => {
+  postLogin: (req, res, next) => {
     adminHelpers.doLogin(req.body).then((response) => {
       loginStatus = response.status
       if (loginStatus) {
@@ -31,6 +31,8 @@ module.exports = {
         req.session.adminErr = 'Invalid Admin Id or Password'
         res.redirect('back')
       }
+    }).catch((err) => {
+      next(err)
     })
   },
   //   Admin Home
@@ -51,19 +53,23 @@ module.exports = {
     }
   },
   // Admin Vendor's Products
-  getProducts: (req, res) => {
+  getProducts: (req, res, next) => {
     productHelpers.getAllProducts().then((products) => {
       res.render('admin/adminProducts', { layout: 'adminLayout', admin: true, products, adminVendorProducts: true })
+    }).catch((err) => {
+      next(err)
     })
   },
   // Admin Vendor's Products delete
-  getDeleteVendorProduct: (req, res) => {
+  getDeleteVendorProduct: (req, res, next) => {
     productHelpers.deleteProducts(req.query.id).then((response) => {
       res.redirect('/admin/products')
+    }).catch((err) => {
+      next(err)
     })
   },
   // Admin Users
-  getUsers: (req, res) => {
+  getUsers: (req, res, next) => {
     userHelpers.getAllUsers().then((usersData) => {
       let status = usersData.status
       if (status) {
@@ -75,23 +81,31 @@ module.exports = {
           layout: 'adminLayout', admin: true, usersData, adminUsers: true
         })
       }
+    }).catch((err) => {
+      next(err)
     })
 
   },
+
   // Admin User Block Unblock
-  getBlockUser: (req, res) => {
+  getBlockUser: (req, res, next) => {
     userHelpers.blockUser(req.query.id).then(() => {
       res.redirect('/admin/users')
+    }).catch((err) => {
+      next(err)
     })
   },
 
-  getUnblockUser: (req, res) => {
+  getUnblockUser: (req, res, next) => {
     userHelpers.unBlockUser(req.query.id).then(() => {
       res.redirect('/admin/users')
+    }).catch((err) => {
+      next(err)
     })
   },
+
   // Admin Vendors
-  getVendors: (req, res) => {
+  getVendors: (req, res, next) => {
     vendorHelpers.getAllVendors().then((vendorsData) => {
       let status = vendorsData.status
       if (status) {
@@ -104,29 +118,38 @@ module.exports = {
         })
       }
 
+    }).catch((err) => {
+      next(err)
     })
   },
+
   // Admin Vendor Block and Unblock
 
-  getBlockVendor: (req, res) => {
+  getBlockVendor: (req, res, next) => {
     vendorHelpers.blockVendor(req.query.id).then(() => {
       res.redirect('/admin/vendors')
+    }).catch((err) => {
+      next(err)
     })
   },
-  getUnblockVendor: (req, res) => {
+  getUnblockVendor: (req, res, next) => {
     vendorHelpers.UnBlockVendor(req.query.id).then(() => {
       res.redirect('/admin/vendors')
+    }).catch((err) => {
+      next(err)
     })
   },
   // Admin Categories
-  getCategories: (req, res) => {
+  getCategories: (req, res, next) => {
     categoryHelpers.getAllCategories().then((categories) => {
       res.render('admin/category', { layout: 'adminLayout', admin: true, categories, adminCategories: true })
+    }).catch((err) => {
+      next(err)
     })
 
   },
   // Admin Add-Category
-  getAddCategory: (req, res) => {
+  getAddCategory: (req, res, next) => {
     res.render('admin/add-category', { layout: 'adminLayout', admin: true, 'categoryErr': req.session.categoryErr })
     req.session.categoryErr = false
   },
@@ -139,17 +162,21 @@ module.exports = {
         res.redirect('/admin/add-category')
       }
 
+    }).catch((err) => {
+      next(err)
     })
   },
   // Admin Edit Category
-  getEditCategory: (req, res) => {
+  getEditCategory: (req, res, next) => {
     categoryHelpers.getCategory(req.query.id).then((category) => {
       res.render('admin/edit-category', { layout: 'adminLayout', admin: true, category, 'categoryErr': req.session.categoryErr })
       req.session.categoryErr = false
+    }).catch((err) => {
+      next(err)
     })
 
   },
-  postEditCategory: (req, res) => {
+  postEditCategory: (req, res, next) => {
     categoryHelpers.updateCategory(req.body).then((response) => {
       if (response.status) {
         req.session.categoryErr = 'Category name already exist.'
@@ -158,30 +185,38 @@ module.exports = {
         res.redirect('/admin/categories')
       }
 
+    }).catch((err) => {
+      next(err)
     })
   },
   // Admin Delete Category
-  getCategoryDelete: (req, res) => {
+  getCategoryDelete: (req, res, next) => {
     categoryHelpers.deleteCategory(req.query.id).then(() => {
       res.redirect('/admin/categories')
+    }).catch((err) => {
+      next(err)
     })
   },
   // Admin's Products
-  getAdminProducts: (req, res) => {
+  getAdminProducts: (req, res, next) => {
     adminData = req.session.adminData
     productHelpers.getVendorProducts(adminData._id).then((products) => {
       res.render('admin/adminProductManagement', { layout: 'adminLayout', admin: true, products, adminProducts: true })
+    }).catch((err) => {
+      next(err)
     })
 
   },
   // Admin add product
-  getAdminAddProducts: (req, res) => {
+  getAdminAddProducts: (req, res, next) => {
     categoryHelpers.getAllCategories().then((categories) => {
       res.render('admin/adminAddProduct', { layout: 'adminLayout', admin: true, categories })
+    }).catch((err) => {
+      next(err)
     })
 
   },
-  postAdminAddProducts: (req, res) => {
+  postAdminAddProducts: (req, res, next) => {
     adminData = req.session.adminData
     let img = []
     if (req.files.length > 0) {
@@ -191,18 +226,24 @@ module.exports = {
     }
     productHelpers.addProduct(req.body, img, adminData).then(() => {
       res.redirect('/admin/admin-products')
+    }).catch((err) => {
+      next(err)
     })
   },
   // Admin Edit Product
-  getEditProduct: (req, res) => {
+  getEditProduct: (req, res, next) => {
     productHelpers.getProduct(req.query.id).then((product) => {
       categoryHelpers.getAllCategories().then((categories) => {
         res.render('admin/adminEditProduct', { layout: 'adminLayout', vendor: true, product, categories })
+      }).catch((err) => {
+        next(err)
       })
 
+    }).catch((err) => {
+      next(err)
     })
   },
-  postEditProduct: (req, res,next) => {
+  postEditProduct: (req, res, next) => {
     let img = []
     if (req.files.length > 0) {
       img = req.files.map((file) => {
@@ -211,20 +252,24 @@ module.exports = {
     }
     productHelpers.updateProduct(req.query.id, req.body, img).then(() => {
       res.redirect('/admin/admin-products')
-    }).catch((err)=>{
+    }).catch((err) => {
       next(err)
     })
   },
   // Admin Delete Product
-  getDeleteAdminProduct: (req, res) => {
+  getDeleteAdminProduct: (req, res, next) => {
     productHelpers.deleteProducts(req.query.id).then(() => {
       res.redirect('/admin/admin-products')
+    }).catch((err) => {
+      next(err)
     })
   },
   // Admin Banner Management
-  getBanners: (req, res) => {
+  getBanners: (req, res, next) => {
     bannerHelpers.getAllBanners().then((banners) => {
       res.render('admin/banner', { layout: 'adminLayout', admin: true, banners, adminBanner: true })
+    }).catch((err) => {
+      next(err)
     })
 
   },
@@ -232,32 +277,40 @@ module.exports = {
   getAddBanner: (req, res) => {
     res.render('admin/add-banner', { layout: 'adminLayout', admin: true })
   },
-  postAddBanner: (req, res) => {
+  postAddBanner: (req, res, next) => {
     let image = req.file.filename
     bannerHelpers.addBanner(req.body, image).then(() => {
       res.redirect('/admin/add-banner')
+    }).catch((err) => {
+      next(err)
     })
 
 
   },
   // Admin Edit Banner
-  getEditBanner: (req, res) => {
+  getEditBanner: (req, res, next) => {
     bannerHelpers.getBanner(req.query.id).then((bannerData) => {
       res.render('admin/editBanner', { layout: 'adminLayout', admin: true, bannerData })
+    }).catch((err) => {
+      next(err)
     })
 
   },
-  postEditBanner: (req, res) => {
+  postEditBanner: (req, res, next) => {
     let image = req.file.filename
 
     bannerHelpers.updateBanner(req.query.id, req.body, image).then(() => {
       res.redirect('/admin/banner')
+    }).catch((err) => {
+      next(err)
     })
   },
   // Admin Delete Banner
-  getDeleteBanner: (req, res) => {
+  getDeleteBanner: (req, res, next) => {
     bannerHelpers.deleteBanner(req.query.id).then(() => {
       res.redirect('/admin/banner')
+    }).catch((err) => {
+      next(err)
     })
   },
   // Admin Orders
@@ -281,13 +334,19 @@ module.exports = {
     }
   },
   // All Orders
-  getAllOrders: async (req, res) => {
-    let allOrders = await adminHelpers.getAllOrders()
-    res.render('admin/allOrders', { layout: 'adminLayout', admin: true, allOrders })
+  getAllOrders: async (req, res, next) => {
+    try {
+      let allOrders = await adminHelpers.getAllOrders()
+      res.render('admin/allOrders', { layout: 'adminLayout', admin: true, allOrders })
+    } catch (err) {
+      next(err)
+    }
   },
-  postAllOrders: (req, res) => {
+  postAllOrders: (req, res, next) => {
     adminHelpers.changeOrderStatus(req.body.status, req.body.orderId).then(() => {
       res.redirect('back')
+    }).catch((err) => {
+      next(err)
     })
   },
   // Admin Logout

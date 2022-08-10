@@ -302,32 +302,32 @@
       },
       method: 'post',
       success: (response) => {
-        if(response.login){
+        if (response.login) {
           if (response.status) {
-          Swal.fire({
-            text: 'Item added to Wishlist',
-            target: '#custom-target',
-            customClass: {
-              container: 'position-absolute'
-            },
-            toast: true,
-            position: 'bottom-right'
-          })
+            Swal.fire({
+              text: 'Item added to Wishlist',
+              target: '#custom-target',
+              customClass: {
+                container: 'position-absolute'
+              },
+              toast: true,
+              position: 'bottom-right'
+            })
+          } else {
+            Swal.fire({
+              text: 'Item removed from Wishlist',
+              target: '#custom-target',
+              customClass: {
+                container: 'position-absolute'
+              },
+              toast: true,
+              position: 'bottom-right'
+            })
+          }
+          $("#icons").load(window.location.href + " #icons");
+          $("#icons1").load(window.location.href + " #icons1");
         } else {
           Swal.fire({
-            text: 'Item removed from Wishlist',
-            target: '#custom-target',
-            customClass: {
-              container: 'position-absolute'
-            },
-            toast: true,
-            position: 'bottom-right'
-          })
-        }
-        $( "#icons" ).load(window.location.href + " #icons" );
-				$( "#icons1" ).load(window.location.href + " #icons1" );
-        }else{
-           Swal.fire({
             text: 'Please Signin',
             target: '#custom-target',
             customClass: {
@@ -337,7 +337,7 @@
             position: 'bottom-right'
           })
         }
-        
+
       }
     })
   }

@@ -1,15 +1,15 @@
 <!-- Content wrapper -->
 <div class="content-wrapper">
   <!-- Content -->
- 
-  
+
+
   <div class="container my-3">
     <div class="row">
       <div class="col card mx-4">
         <div class="card-body">
           <div class="card-title d-flex align-items-start justify-content-between">
             <div class="avatar flex-shrink-0">
-              <i class='bx bxs-package bx-tada h2' style='color:#9ad349'  ></i>
+              <i class='bx bxs-package bx-tada h2' style='color:#9ad349'></i>
             </div>
 
           </div>
@@ -23,7 +23,7 @@
         <div class="card-body">
           <div class="card-title d-flex align-items-start justify-content-between">
             <div class="avatar flex-shrink-0">
-              <i class='bx bxs-comment-x bx-tada h2' style='color:#d82b45' ></i>
+              <i class='bx bxs-comment-x bx-tada h2' style='color:#d82b45'></i>
             </div>
 
           </div>
@@ -46,13 +46,13 @@
         <div class="card-body">
           <div class="card-title d-flex align-items-start justify-content-between">
             <div class="avatar flex-shrink-0">
-              <i class='bx bxs-credit-card bx-flip-horizontal bx-tada h2' style='color:#e7b144'  ></i>
+              <i class='bx bxs-credit-card bx-flip-horizontal bx-tada h2' style='color:#e7b144'></i>
             </div>
 
           </div>
           <span class="fw-semibold d-block mb-1">Online Payements</span>
           <h3 class="card-title mb-2">{{totalOnline}}</h3>
-          
+
         </div>
 
       </div>
@@ -60,14 +60,14 @@
         <div class="card-body">
           <div class="card-title d-flex align-items-start justify-content-between">
             <div class="avatar flex-shrink-0">
-              <i class='bx bx-money bx-tada bx-rotate-90 h2' style='color:#4dbf49' ></i>
+              <i class='bx bx-money bx-tada bx-rotate-90 h2' style='color:#4dbf49'></i>
 
             </div>
 
           </div>
           <span class="fw-semibold d-block mb-1">COD</span>
           <h3 class="card-title mb-2">{{totalCod}}</h3>
-       
+
         </div>
 
       </div>
@@ -100,9 +100,9 @@
 <!-- / Layout wrapper -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <script>
-  var xValues = ["OnlinePayment", "COD", ];
-  var yValues = [{{totalOnlineMoney}}, {{totalCodMoney}}, ];
-  var barColors = ["#e7b144", "#4dbf49", ];
+  var xValues = ["OnlinePayment", "COD",];
+  var yValues = [{{ totalOnlineMoney }}, { { totalCodMoney } }, ];
+  var barColors = ["#e7b144", "#4dbf49",];
 
   new Chart("myChart", {
     type: "bar",
@@ -124,7 +124,7 @@
 </script>
 <script>
   var xValues = ["Pending", "Shipped", "Delivered", "Cancelled",];
-  var yValues = [{{totalPending}}, {{totalShipped}}, {{totalDelivered}}, {{totalCancel}}];
+  var yValues = [{{ totalPending }}, { { totalShipped } }, { { totalDelivered } }, { { totalCancel } }];
   var barColors = [
     "#1a74af70",
     "#4dbf45",

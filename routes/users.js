@@ -65,6 +65,7 @@ router.post('/checkout', userController.postCheckout)
 
 // verify-payment
 router.post('/verify-payment', verifyLogin, userController.postVerifyPayment)
+
 // Add adress
 router.get('/add-address', verifyLogin, userController.getAddAddress)
 router.post('/add-address', userController.postAddress)
@@ -84,28 +85,26 @@ router.get('/user-profile', verifyLogin, userController.getUserProfile)
 router.post('/user-profile', verifyLogin, userController.postUserProfile)
 
 // View Orders
-router.get('/orders',verifyLogin,userController.getUserOrders)
+router.get('/orders', verifyLogin, userController.getUserOrders)
 
 // Order Details
-router.get('/orderDetails',verifyLogin,userController.getOrderDetails)
+router.get('/orderDetails', verifyLogin, userController.getOrderDetails)
 
 // CancelOrder
-router.post('/cancelOrder',verifyLogin,userController.postCancelOrder)
+router.post('/cancelOrder', verifyLogin, userController.postCancelOrder)
 
 // forgot password email
-router.get('/change-password',userController.getForgotPassword)
-router.post('/change-password',userController.postForgotPassword)
+router.get('/change-password', userController.getForgotPassword)
+router.post('/change-password', userController.postForgotPassword)
 
 // forgot password otp
-router.get('/passwordOtp',userController.getPasswordOtp)
-router.post('/passwordOtp',userController.postPasswordOtp)
+router.get('/passwordOtp', userController.getPasswordOtp)
+router.post('/passwordOtp', userController.postPasswordOtp)
 
 // reset password
-router.get('/reset-password',userController.getResetPassword)
-router.post('/reset-password',userController.postResetPassword)
+router.get('/reset-password', userController.getResetPassword)
+router.post('/reset-password', userController.postResetPassword)
 
-//product filter
-// router.post('/product-details/filter',userController.productFilter) 
 
 // User Logout
 router.get('/logout', userController.getLogout)

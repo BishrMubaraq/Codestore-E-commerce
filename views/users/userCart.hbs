@@ -55,7 +55,7 @@
 											class="btn btn-secondary">+</button>
 									</div>
 								</td>
-								<td  class="column-5"><span
+								<td class="column-5"><span
 										style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
 										₹
 									</span> <span id="productTotal">{{this.productTotal}}</span></td>
@@ -120,9 +120,9 @@
 					} else {
 						document.getElementById(proId).innerHTML = quantity + count
 						document.getElementById('total').innerHTML = response.total
-						$( "#productTotal" ).load(window.location.href + " #productTotal" );
+						$("#productTotal").load(window.location.href + " #productTotal");
 					}
-					
+
 				}
 			})
 		}

@@ -31,6 +31,7 @@ router.post('/signup', vendorsController.postSignup)
 
 // Vendor Home
 router.get('/', verifyLogin, vendorsController.getHome)
+
 // Vendor Products
 router.get('/products', verifyLogin, vendorsController.getProducts)
 
@@ -67,8 +68,8 @@ router.get('/profile', verifyLogin, vendorsController.getProfile)
 router.post('/profile', verifyLogin, store.single('profile-image'), vendorsController.postProfile)
 
 // Vendor Order
-router.get('/orders',verifyLogin,vendorsController.getOrders)
-router.post('/orders',verifyLogin,vendorsController.postOrders)
+router.get('/orders', verifyLogin, vendorsController.getOrders)
+router.post('/orders', verifyLogin, vendorsController.postOrders)
 
 // Vendor Logout
 router.get('/logout', vendorsController.getLogout)
