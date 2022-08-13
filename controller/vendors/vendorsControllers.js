@@ -3,6 +3,7 @@ const productHelpers = require('../../helpers/productHelpers')
 
 const categoryHelpers = require("../../helpers/categoryHelpers")
 const adminHelpers = require("../../helpers/adminHelpers")
+const { vendorData } = require("../../helpers/vendorHelpers")
 
 
 
@@ -283,6 +284,26 @@ module.exports = {
         } catch (err) {
             next(err)
         }
+    },
+    // product review
+    getProductReview: async (req,res,next)=>{
+        try{
+            let vendorData = req.session.vendorData
+            let productReviews=await productHelpers.getVendorProductReview(vendorData._id)
+            res.render('vendors/reviews',{layout:'adminLayout',vendor:true,productReviews})
+            }catch(err){
+              next(err)
+            }
+    },
+
+    // delete review
+    deleteReview:(req,res,next)=>{
+        productHelpers.deleteReview(req.query.proId,req.query.reviewId).then(()=>{
+            res.redirect('back')
+          }).catch((err)=>{
+            next(err)
+          })
+      
     },
     // Vendor Logout
     getLogout: (req, res) => {

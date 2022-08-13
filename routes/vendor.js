@@ -71,8 +71,16 @@ router.post('/profile', verifyLogin, store.single('profile-image'), vendorsContr
 router.get('/orders', verifyLogin, vendorsController.getOrders)
 router.post('/orders', verifyLogin, vendorsController.postOrders)
 
+// product reviews
+router.get('/product-review',verifyLogin,vendorsController.getProductReview)
+
+// delete review
+router.get('/delete-review',verifyLogin,vendorsController.deleteReview)
+
+
 // Vendor Logout
 router.get('/logout', vendorsController.getLogout)
+
 
 // Vendor Error
 router.get('/*', vendorsController.getError)

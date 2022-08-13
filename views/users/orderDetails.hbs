@@ -149,7 +149,7 @@
 
                                         <span class="stext-102 cl3 size-206">
                                             {{orderDetails.[0].orderObj.address.fname}}
-                                            {{orderDetails.[0].orderObj.address.lname}},{{orderDetails.[0].orderObj.address.address}},{{orderDetails.[0].orderObj.address.city}},{{orderDetails.[0].orderObj.address.state}}
+                                            {{orderDetails.[0].orderObj.address.lname}},<br>{{orderDetails.[0].orderObj.address.address}},{{orderDetails.[0].orderObj.address.city}},<br>{{orderDetails.[0].orderObj.address.state}}
                                             <br>
                                             Pincode : {{orderDetails.[0].orderObj.address.pincode}} <br>
                                             Landmark : {{orderDetails.[0].orderObj.address.landmark}} <br>
@@ -198,7 +198,10 @@
                                                                                 <li class="text-muted my-2"><span
                                                                                         style="font-weight: 600;">To:</span>
                                                                                     {{orderDetails.[0].orderObj.address.fname}}
-                                                                                    {{orderDetails.[0].orderObj.address.lname}},{{orderDetails.[0].orderObj.address.address}},{{orderDetails.[0].orderObj.address.city}},{{orderDetails.[0].orderObj.address.state}}
+                                                                                    {{orderDetails.[0].orderObj.address.lname}}<br>
+                                                                                    {{orderDetails.[0].orderObj.address.address}},{{orderDetails.[0].orderObj.address.city}},
+                                                                                    <br>
+                                                                                    {{orderDetails.[0].orderObj.address.state}},
                                                                                     <br>
                                                                                     Pincode :
                                                                                     {{orderDetails.[0].orderObj.address.pincode}}
@@ -276,8 +279,8 @@
 
                                                                         <div class="col-xl-3">
 
-                                                                            <h4><span class="text-muted">Total: </span>₹
-                                                                                {{orderDetails.[0].productTotal}}</h4>
+                                                                            <h4><span class="text-muted">Total: </span>
+                                                                                ₹{{orderDetails.[0].productTotal}}</h4>
                                                                         </div>
                                                                     </div>
                                                                     <hr>

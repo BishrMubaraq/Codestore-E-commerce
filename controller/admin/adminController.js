@@ -4,7 +4,8 @@ const productHelpers = require('../../helpers/productHelpers')
 const userHelpers = require('../../helpers/userHelpers')
 const vendorHelpers = require('../../helpers/vendorHelpers')
 const categoryHelpers = require('../../helpers/categoryHelpers')
-const bannerHelpers = require('../../helpers/bannerHelpers')
+const bannerHelpers = require('../../helpers/bannerHelpers');
+const { Db } = require("mongodb");
 
 module.exports = {
   // Admin Login
@@ -348,6 +349,24 @@ module.exports = {
     }).catch((err) => {
       next(err)
     })
+  },
+  // product reviews
+  getReveiws:async (req,res,next)=>{
+    try{
+    adminData = req.session.adminData
+    let productReviews=await productHelpers.getVendorProductReview(adminData._id)
+    res.render('admin/reviews',{layout:'adminLayout',admin:true,productReviews})
+    }catch(err){
+      next(err)
+    }
+  },
+  deleteReview:(req,res,next)=>{
+    productHelpers.deleteReview(req.query.proId,req.query.reviewId).then(()=>{
+      res.redirect('back')
+    }).catch((err)=>{
+      next(err)
+    })
+
   },
   // Admin Logout
   getLogout: (req, res) => {

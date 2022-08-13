@@ -97,6 +97,10 @@ router.post('/orders', verifyLogin, adminController.postAdminOrders)
 router.get('/allOrders', verifyLogin, adminController.getAllOrders)
 router.post('/allOrders', verifyLogin, adminController.postAllOrders)
 
+// Product reviews
+router.get('/reviews',verifyLogin,adminController.getReveiws)
+router.get('/delete-review',verifyLogin,adminController.deleteReview)
+
 // Admin Logout
 router.get('/logout', adminController.getLogout)
 

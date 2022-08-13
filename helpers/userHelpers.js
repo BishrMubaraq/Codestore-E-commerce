@@ -63,24 +63,20 @@ module.exports = {
                 if (user) {
                     bcrypt.compare(userData.password, user.password).then((status) => {
                         if (status) {
-                            console.log('login success');
                             response.loginStatus = true
                             response.userData = user
                             resolve(response)
                         } else {
-                            console.log('login failed 1');
                             response.loginStatus = false
                             resolve(response)
                         }
                     })
                 }
                 else if (userStatus) {
-                    console.log('Admin Blocked User');
                     response.loginStatus = false
                     response.userStatus = true
                     resolve(response)
                 } else {
-                    console.log('login failed 2');
                     response.loginStatus = false
                     resolve(response)
                 }
@@ -160,8 +156,6 @@ module.exports = {
                         (product) => {
                             return product.item == proId
                         })
-
-                    console.log(proExist);
                     if (proExist != -1) {
                         db.get().collection(collections.CART_COLLECTION).updateOne({
                             'products.item': objectId(proDetails.proId)
@@ -386,6 +380,8 @@ module.exports = {
                         }
                     }).then(() => {
                         resolve()
+                    }).catch((err)=>{
+                        reject(err)
                     })
                 } else {
                     db.get().collection(collections.USER_COLLECTION).updateOne({ _id: objectId(userId) },
@@ -395,6 +391,8 @@ module.exports = {
                             }
                         }).then(() => {
                             resolve()
+                        }).catch((err)=>{
+                            reject(err)
                         })
                 }
             } catch (err) {
@@ -487,7 +485,6 @@ module.exports = {
             };
             instance.orders.create(options, function (err, order) {
                 if (err) {
-                    console.log(err);
                     reject(err)
                 } else {
                     resolve(order)
@@ -640,8 +637,7 @@ module.exports = {
             db.get().collection(collections.USER_COLLECTION).updateOne({ _id: objectId(userId) }, {
                 $set: {
                     name: userData.name,
-                    email: userData.email,
-                    mobileNumber: userData.mobileNumber
+                    email: userData.email
                 }
             }).then(() => {
                 resolve()

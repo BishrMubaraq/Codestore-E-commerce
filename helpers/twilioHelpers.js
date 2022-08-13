@@ -20,7 +20,6 @@ module.exports = {
         })
     },
     otpVerify: (otpData, nuData) => {
-        console.log(nuData);
         let resp = {}
         return new Promise(async (resolve, reject) => {
             client.verify.services(servicesId).verificationChecks.create({

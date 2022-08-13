@@ -48,10 +48,16 @@
             <div data-i18n="Analytics">Banner Management</div>
           </a>
         </li>
-        <li class="menu-item {{#if adminBanner}}active{{/if}}">
+        <li class="menu-item">
           <a href="/admin/orders" class="menu-link">
             <i class="menu-icon tf-icons bx bxs-package"></i>
             <div data-i18n="Analytics">Order Management</div>
+          </a>
+        </li>
+          <li class="menu-item">
+          <a href="/admin/reviews" class="menu-link">
+            <i class="menu-icon tf-icons bx bxs-message-square-detail"></i>
+            <div data-i18n="Analytics">Product Reviews</div>
           </a>
         </li>
         <li class="menu-header small text-uppercase">
@@ -75,7 +81,7 @@
             <div data-i18n="Analytics">Vendor's Products</div>
           </a>
         </li>
-        <li class="menu-item {{#if adminBanner}}active{{/if}}">
+        <li class="menu-item">
           <a href="/admin/allOrders" class="menu-link">
             <i class="menu-icon tf-icons bx bx-box"></i>
             <div data-i18n="Analytics">All Orders</div>
@@ -128,38 +134,14 @@
                       </div>
                       <div class="flex-grow-1">
                         {{#if admin}}
-                        <span class="fw-semibold d-block">{{admin.name}}</span>
+                        <span class="fw-semibold d-block">Codestore</span>
                         <small class="text-muted">Admin</small>
                         {{/if}}
                       </div>
                     </div>
                   </a>
                 </li>
-                <li>
-                  <div class="dropdown-divider"></div>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    <i class="bx bx-user me-2"></i>
-                    <span class="align-middle">My Profile</span>
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    <i class="bx bx-cog me-2"></i>
-                    <span class="align-middle">Settings</span>
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    <span class="d-flex align-items-center align-middle">
-                      <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-                      <span class="flex-grow-1 align-middle">Billing</span>
-                      <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-                    </span>
-                  </a>
-                </li>
-                <li>
+                
                   <div class="dropdown-divider"></div>
                 </li>
                 <li>

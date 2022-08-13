@@ -105,6 +105,12 @@ router.post('/passwordOtp', userController.postPasswordOtp)
 router.get('/reset-password', userController.getResetPassword)
 router.post('/reset-password', userController.postResetPassword)
 
+// post product reviews
+router.post('/product-review',verifyLogin,userController.postProductReview)
+
+// delete review
+router.post('/delete-review',verifyLogin,userController.deleteReview)
+
 
 // User Logout
 router.get('/logout', userController.getLogout)

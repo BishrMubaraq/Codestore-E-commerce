@@ -1,0 +1,73 @@
+<section class="container-p-y container-xxl flex-grow-1">
+
+    <div class="card">
+
+        <h5 class="card-header">Reviews</h5>
+
+        <div class="table-responsive text-nowrap p-4">
+            <table id="productTable" class="table p-3" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Sl no.</th>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Reviewer Name</th>
+                        <th>Reviewer Email</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each productReviews}}
+                    <tr>
+                        <td>{{inc @index}}</td>
+                        <td>
+                            <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-start">
+                                <li class="avatar avatar-xl pull-up">
+                                    <img src="/public/product-images/{{this.images.[0]}}" alt="productImage" />
+                                </li>
+                            </ul>
+                        </td>
+                        <td>{{this.name}}</td>
+                        <td>{{this.userDetails.[0].name}}</td>
+                        <td>{{this.userDetails.[0].email}}</td>
+                        <td>
+                            <div class="modal fade" id="f{{this.review.time}}" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-xl" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body table-responsive text-nowrap">
+                                            <p>"{{this.review.review}}"</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn rounded-pill btn-icon btn-outline-primary"
+                                data-bs-toggle="modal" data-bs-target="#f{{this.review.time}}">
+                                <span class="tf-icons bx bx-show"></span>
+                            </button>
+                            <a href="/admin/delete-review?proId={{this._id}}&reviewId={{this.review.time}}">
+                                <button type="button" class="btn rounded-pill btn-icon btn-outline-danger">
+                                    <span class="tf-icons bx bx-trash"></span>
+                                </button>
+                            </a>
+                        </td>
+
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<script>
+    $(document).ready(function () {
+        $('#user_table').wrap('<div id="hide" style="display:none"/>');
+        $('#hide').css('display', 'block');
+    });
+    var table = $('#productTable').DataTable();
+</script>
