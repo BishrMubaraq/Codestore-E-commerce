@@ -380,7 +380,7 @@ module.exports = {
                         }
                     }).then(() => {
                         resolve()
-                    }).catch((err)=>{
+                    }).catch((err) => {
                         reject(err)
                     })
                 } else {
@@ -391,7 +391,7 @@ module.exports = {
                             }
                         }).then(() => {
                             resolve()
-                        }).catch((err)=>{
+                        }).catch((err) => {
                             reject(err)
                         })
                 }

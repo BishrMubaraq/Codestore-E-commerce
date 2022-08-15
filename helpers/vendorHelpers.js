@@ -15,7 +15,9 @@ module.exports = {
                     'bussinessName': vendorData.bussinessName,
                     'mobileNumber': vendorData.mobileNumber,
                     'status': true,
-                    'password': vendorData.password
+                    'password': vendorData.password,
+                    'approval':false,
+                    'time':Date.now()
                 }).then(async (data) => {
                     let vendors = await db.get().collection(collections.VENDOR_COLLECTION).findOne({ _id: data.insertedId })
                     response.vendor = vendors
@@ -46,7 +48,8 @@ module.exports = {
         return new Promise(async (resolve, reject) => {
             try {
                 let response = {}
-                let vendor = await db.get().collection(collections.VENDOR_COLLECTION).findOne({ email: vendorData.email, status: true })
+                let vendor = await db.get().collection(collections.VENDOR_COLLECTION).findOne({ email: vendorData.email, status: true,approval:true })
+                let vendorApprovalStatus=await db.get().collection(collections.VENDOR_COLLECTION).findOne({ email: vendorData.email, status: true,approval:false })
                 let vendorStatus = await db.get().collection(collections.VENDOR_COLLECTION).findOne({ email: vendorData.email, status: false })
                 if (vendor) {
                     bcrypt.compare(vendorData.password, vendor.password).then((status) => {
@@ -65,6 +68,10 @@ module.exports = {
                     response.status = false
                     response.vendorStatus = true
                     resolve(response)
+                } else if(vendorApprovalStatus){
+                    response.status = false
+                    response.Approvalstatus=true
+                    resolve(response)
                 }
                 else {
                     response.status = false
@@ -78,11 +85,25 @@ module.exports = {
     getAllVendors: () => {
         return new Promise(async (resolve, reject) => {
             try {
-                let vendors = await db.get().collection(collections.VENDOR_COLLECTION).find().toArray()
+                let vendors = await db.get().collection(collections.VENDOR_COLLECTION).find().sort({time:-1}).toArray()
                 resolve(vendors)
             } catch (err) {
                 reject(err)
             }
+        })
+    },
+    approveVendor:(vendorId)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collections.VENDOR_COLLECTION).updateOne({ _id: objectId(vendorId) },
+                {
+                    $set: {
+                        approval: true
+                    }
+                }).then(() => {
+                    resolve()
+                }).catch((err) => {
+                    reject(err)
+                })
         })
     },
     blockVendor: (vendorId) => {

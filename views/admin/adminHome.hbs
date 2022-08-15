@@ -112,11 +112,11 @@
 
   <div class="col-lg-8 mb-4 order-0">
 
-    <canvas id="myChart" style="width:100%;max-width:600rem"></canvas>
+    <canvas id="myChartadmin" style="width:100%;max-width:600rem"></canvas>
   </div>
   <div class="col-lg-8 mb-4 order-0">
 
-    <canvas id="myPieChart" style="width:100%;max-width:600rem"></canvas>
+    <canvas id="myPieChartadmin" style="width:100%;max-width:600rem"></canvas>
   </div>
 
 </div>
@@ -133,10 +133,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <script>
   var xValues = ["OnlinePayment", "COD",];
-  var yValues = [{{ totalOnlineMoney }}, { { totalCodMoney } },];
+  var yValues = [{{ totalOnlineMoney }}, {{ totalCodMoney }},];
   var barColors = ["#e7b144", "#4dbf49",];
 
-  new Chart("myChart", {
+  new Chart("myChartadmin", {
     type: "bar",
     data: {
       labels: xValues,
@@ -156,7 +156,7 @@
 </script>
 <script>
   var xValues = ["Pending", "Shipped", "Delivered", "Cancelled",];
-  var yValues = [{{ totalPending }}, { { totalShipped } }, { { totalDelivered } }, { { totalCancelOrders } }];
+  var yValues = [{{ totalPending }}, {{ totalShipped }}, {{ totalDelivered }}, {{ totalCancelOrders }}];
   var barColors = [
     "#1a74af70",
     "#4dbf45",
@@ -164,7 +164,7 @@
     "#e8c3b9",
   ];
 
-  new Chart("myPieChart", {
+  new Chart("myPieChartadmin", {
     type: "doughnut",
     data: {
       labels: xValues,

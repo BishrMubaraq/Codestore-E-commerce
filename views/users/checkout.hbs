@@ -222,18 +222,7 @@
             data: $('#checkoutForm').serialize(),
             success: (response) => {
                 if (response.codStatus) {
-                    Swal.fire({
-                        title: 'Thank You!',
-                        text: "Your Order placed successfully",
-                        icon: 'success',
-                        confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'Continue Shopping',
-                        footer: '<a href="/orders">View Orders</a>'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            location.href = '/products'
-                        }
-                    })
+                    location.href="/order-success"
                     document.getElementById('proceed').setAttribute('disabled', '')
 
                 } else {
@@ -283,11 +272,7 @@
                 order
             },
             success: (response) => {
-                if (reponse.status) {
-                    location.reload('/orders')
-                }
-
-
+                location.href('/order-success')
             }
 
         })

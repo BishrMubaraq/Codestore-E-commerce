@@ -3,8 +3,6 @@ const productHelpers = require('../../helpers/productHelpers')
 
 const categoryHelpers = require("../../helpers/categoryHelpers")
 const adminHelpers = require("../../helpers/adminHelpers")
-const { vendorData } = require("../../helpers/vendorHelpers")
-
 
 
 module.exports = {
@@ -15,7 +13,7 @@ module.exports = {
         if (vendorLogged) {
             res.redirect('/vendor')
         } else {
-            res.render('vendors/vendorLogin', { layout: 'loginLayout', loginErr: req.session.vendorErr })
+            res.render('vendors/vendorLogin', { layout: 'loginLayout', loginErr: req.session.vendorErr})
             req.session.vendorErr = false
         }
 
@@ -30,7 +28,11 @@ module.exports = {
                 if (response.vendorStatus) {
                     req.session.vendorErr = 'Access Denied'
                     res.redirect('back')
-                } else {
+                }else if(response.Approvalstatus){
+                    req.session.vendorErr = 'Admin will approve your permission asap,Please Wait..'
+                    res.redirect('back')
+                }
+                 else {
                     req.session.vendorErr = 'Invalid Email or Password'
                     res.redirect('back')
                 }
@@ -58,9 +60,8 @@ module.exports = {
                 res.redirect('/vendor/signup')
             } else {
                 vendorHelpers.doSignup(req.body).then((response) => {
-                    req.session.vendorLoggedIn = true
-                    req.session.vendorData = response.vendor
-                    res.redirect('/vendor')
+                    req.session.vendorRegistered=true
+                    res.redirect('/vendor/signin')
                 })
             }
         } catch (err) {
@@ -270,7 +271,7 @@ module.exports = {
     getOrders: async (req, res, next) => {
         try {
             let orders = await adminHelpers.getVendorsOrder(req.session.vendorData._id)
-            res.render('vendors/orders', { layout: 'adminLayout', vendor: true, orders })
+            res.render('vendors/orders', { layout: 'adminLayout', vendor: true, orders,orderManagement:true })
         } catch (err) {
             next(err)
         }
@@ -290,7 +291,7 @@ module.exports = {
         try{
             let vendorData = req.session.vendorData
             let productReviews=await productHelpers.getVendorProductReview(vendorData._id)
-            res.render('vendors/reviews',{layout:'adminLayout',vendor:true,productReviews})
+            res.render('vendors/reviews',{layout:'adminLayout',vendor:true,productReviews,productReview:true})
             }catch(err){
               next(err)
             }

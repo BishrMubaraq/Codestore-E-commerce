@@ -108,6 +108,9 @@ router.post('/reset-password', userController.postResetPassword)
 // post product reviews
 router.post('/product-review',verifyLogin,userController.postProductReview)
 
+// order success page
+router.get('/order-success',verifyLogin,userController.getOrderSuccess)
+
 // delete review
 router.post('/delete-review',verifyLogin,userController.deleteReview)
 

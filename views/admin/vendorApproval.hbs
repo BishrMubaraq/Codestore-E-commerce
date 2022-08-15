@@ -14,7 +14,7 @@
             <th>Email</th>
             <th>Mobile Number</th>
             <th>Bussiness Name</th>
-            <th>Status</th>
+            <th>Approve</th>
             <th>Option</th>
           </tr>
         </thead>
@@ -26,30 +26,32 @@
             <td>{{email}}</td>
             <td>{{mobileNumber}}</td>
             <td>{{bussinessName}}</td>
-            {{#if status}}
-            <td><span class="badge bg-label-success me-1">Active</span></td>
-            <td>
-
-              <a href="/admin/block-vendor?id={{_id}}">
-                <button type="button" class="btn rounded-pill btn-icon btn-outline-danger" data-bs-toggle="tooltip"
-                  data-bs-placement="bottom" data-bs-title="Block">
-                  <span class="tf-icons bx bx-block"></span>
-                </button>
-              </a>
-            </td>
+            {{#if approval}}
+            <td><span class="badge bg-label-success me-1">Approved</span></td>
+            
             {{else}}
-            <td><span class="badge bg-label-danger me-1">Blocked</span></td>
+            <td><span class="badge bg-label-warning me-1">Pending</span></td>
+            {{/if}}
+            {{#if approval}}
             <td>
+                <button disabled  type="button" class="btn rounded-pill btn-icon btn-outline-success" data-bs-toggle="tooltip"
+                  data-bs-placement="bottom" data-bs-title="Approve">
+                  <span class="tf-icons bx bx-check"></span>
+                </button>
+              
+            </td>
+           
+            {{else}}
+             <td>
 
-              <a href="/admin/unblock-vendor?id={{_id}}">
-                <button type="button" class="btn rounded-pill btn-icon btn-outline-success" data-bs-toggle="tooltip"
-                  data-bs-placement="bottom" data-bs-title="Unblock">
-                  <span class="tf-icons bx bxs-polygon"></span>
+              <a href="/admin/approve-vendor?id={{_id}}">
+                <button  type="button" class="btn rounded-pill btn-icon btn-outline-success" data-bs-toggle="tooltip"
+                  data-bs-placement="bottom" data-bs-title="Approve">
+                  <span class="tf-icons bx bx-check"></span>
                 </button>
               </a>
             </td>
-            {{/if}}
-
+    {{/if}}
           </tr>
           {{/each}}
         </tbody>

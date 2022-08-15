@@ -42,7 +42,6 @@ module.exports = {
     if (adminData) {
       Promise.all([adminHelpers.totalVendors(), adminHelpers.totalUsers(), adminHelpers.totalOrder(adminData._id), adminHelpers.totalCancelOrders(adminData._id), adminHelpers.totalOnlinePayments(adminData._id), adminHelpers.totalCod(adminData._id), adminHelpers.totalOnlineMoney(adminData._id), adminHelpers.totalCodMoney(adminData._id), adminHelpers.totalPending(adminData._id), adminHelpers.totalShipped(adminData._id), adminHelpers.totalDelivered(adminData._id)]
       ).then((values) => {
-
         const [totalVendors, totalUsers, totalOrders, totalCancelOrders, totalOnlinePayment, totalCod, totalOnlineMoney, totalCodMoney, totalPending, totalShipped, totalDelivered] = values
         res.render('admin/adminHome', { layout: 'adminLayout', admin: true, adminData, adminHome: true, totalVendors, totalUsers, totalOrders, totalCancelOrders, totalOnlinePayment, totalCod, totalOnlineMoney, totalCodMoney, totalPending, totalShipped, totalDelivered });
       }).catch((err) => {
@@ -73,15 +72,9 @@ module.exports = {
   getUsers: (req, res, next) => {
     userHelpers.getAllUsers().then((usersData) => {
       let status = usersData.status
-      if (status) {
         res.render('admin/adminUsers', {
           layout: 'adminLayout', admin: true, usersData, adminUsers: true, status
         })
-      } else {
-        res.render('admin/adminUsers', {
-          layout: 'adminLayout', admin: true, usersData, adminUsers: true
-        })
-      }
     }).catch((err) => {
       next(err)
     })
@@ -105,20 +98,32 @@ module.exports = {
     })
   },
 
+  // Admin Vendor approval
+  getVendorApproval:(req,res,next)=>{
+    vendorHelpers.getAllVendors().then((vendorsData) => {
+      let approval = vendorsData.approval
+        res.render('admin/vendorApproval', {
+          layout: 'adminLayout', admin: true, vendorsData, adminVendorsapproval: true, approval
+        })
+    }).catch((err) => {
+      next(err)
+    })
+  },
+  VendorApproval: (req, res, next) => {
+    vendorHelpers.approveVendor(req.query.id).then(() => {
+      res.redirect('back')
+    }).catch((err) => {
+      next(err)
+    })
+  },
+
   // Admin Vendors
   getVendors: (req, res, next) => {
     vendorHelpers.getAllVendors().then((vendorsData) => {
       let status = vendorsData.status
-      if (status) {
         res.render('admin/adminVendors', {
           layout: 'adminLayout', admin: true, vendorsData, adminVendors: true, status
         })
-      } else {
-        res.render('admin/adminVendors', {
-          layout: 'adminLayout', admin: true, vendorsData, adminVendors: true
-        })
-      }
-
     }).catch((err) => {
       next(err)
     })

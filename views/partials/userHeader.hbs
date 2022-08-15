@@ -6,7 +6,7 @@
     <div class="top-bar">
       <div class="content-topbar flex-sb-m h-full container">
         <div class="left-top-bar">
-          Free shipping for standard order over ₹500
+          Free shipping all over India
         </div>
 
         <div class="right-top-bar flex-w h-full">
@@ -52,7 +52,7 @@
               <a href="/products">Shop</a>
             </li>
 
-            <li>
+            <li {{#if orders}}class="active-menu"{{/if}}>
               <a href="/orders">Orders</a>
             </li>
 
@@ -61,7 +61,7 @@
             </li>
 
             <li>
-              <a href="contact.html">Contact</a>
+              <a href="#">Contact</a>
             </li>
           </ul>
         </div>
@@ -197,7 +197,7 @@
       </li>
 
       <li>
-        <a href="contact.html">Contact</a>
+        <a href="#">Contact</a>
       </li>
     </ul>
   </div>
@@ -258,12 +258,6 @@
         {{/each}}
       </ul>
       <div class="w-full">
-
-        {{!-- <div class="header-cart-total w-full p-tb-40">
-          Total:<span style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"> ₹
-          </span> {{totalAmount}}
-        </div> --}}
-
         {{else}}
         <div class="header-cart-wrapitem w-full">
           <h3 style="font-weight: 700;" class="text-center">No Cart Items</h3>

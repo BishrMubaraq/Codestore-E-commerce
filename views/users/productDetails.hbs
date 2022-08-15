@@ -116,11 +116,11 @@
 					<!--  -->
 					<div class="flex-w flex-m p-l-100 p-t-40 respon7">
 						<div class="flex-m bor9 p-r-10 m-r-11">
-							<a href="/add-to-wishlist?id={{productDetails._id}}"
+							<span onclick="addToWishList('{{productDetails._id}}')"
 								class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100"
 								data-tooltip="Add to Wishlist">
 								<i class="zmdi zmdi-favorite"></i>
-							</a>
+							</span>
 						</div>
 
 						<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
@@ -286,7 +286,7 @@
 {{/if}}
 
 <!-- Related Products -->
-<section class="sec-relate-product bg0 p-t-45 p-b-105">
+{{!-- <section class="sec-relate-product bg0 p-t-45 p-b-105">
 	<div class="container">
 		<div class="p-b-45">
 			<h3 class="ltext-106 cl5 txt-center">
@@ -580,12 +580,61 @@
 			</div>
 		</div>
 	</div>
-</section>
+</section> --}}
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript"
 	src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
 <script>
 	$("#Form").validate();
+</script>
+<script>
+  function addToWishList(proId) {
+    $.ajax({
+      url: '/add-to-wishlist',
+      data: {
+        productId: proId
+      },
+      method: 'post',
+      success: (response) => {
+        if (response.login) {
+          if (response.status) {
+            Swal.fire({
+              text: 'Item added to Wishlist',
+              target: '#custom-target',
+              customClass: {
+                container: 'position-absolute'
+              },
+              toast: true,
+              position: 'bottom-right'
+            })
+          } else {
+            Swal.fire({
+              text: 'Item removed from Wishlist',
+              target: '#custom-target',
+              customClass: {
+                container: 'position-absolute'
+              },
+              toast: true,
+              position: 'bottom-right'
+            })
+          }
+          $("#icons").load(window.location.href + " #icons");
+          $("#icons1").load(window.location.href + " #icons1");
+        } else {
+          Swal.fire({
+            text: 'Please Signin',
+            target: '#custom-target',
+            customClass: {
+              container: 'position-absolute'
+            },
+            toast: true,
+            position: 'bottom-right'
+          })
+        }
+
+      }
+    })
+  }
 </script>
 <script>
 	function deleteComment(proId,reviewId){

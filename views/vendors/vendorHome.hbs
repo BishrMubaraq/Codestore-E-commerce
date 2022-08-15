@@ -101,7 +101,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <script>
   var xValues = ["OnlinePayment", "COD",];
-  var yValues = [{{ totalOnlineMoney }}, { { totalCodMoney } }, ];
+  var yValues = [{{ totalOnlineMoney }}, {{ totalCodMoney }}, ];
   var barColors = ["#e7b144", "#4dbf49",];
 
   new Chart("myChart", {
@@ -124,7 +124,7 @@
 </script>
 <script>
   var xValues = ["Pending", "Shipped", "Delivered", "Cancelled",];
-  var yValues = [{{ totalPending }}, { { totalShipped } }, { { totalDelivered } }, { { totalCancel } }];
+  var yValues = [{{ totalPending }}, {{ totalShipped }}, {{ totalDelivered }}, {{ totalCancel }}];
   var barColors = [
     "#1a74af70",
     "#4dbf45",
