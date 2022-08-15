@@ -164,7 +164,7 @@ module.exports = {
     totalVendors: () => {
         return new Promise(async (resolve, reject) => {
             try {
-                let vendorsCount = await db.get().collection(collections.VENDOR_COLLECTION).find().count()
+                let vendorsCount = await db.get().collection(collections.VENDOR_COLLECTION).countDocuments({})
                 resolve(vendorsCount)
             } catch (err) {
                 reject(err)
@@ -175,7 +175,7 @@ module.exports = {
     totalUsers: () => {
         return new Promise(async (resolve, reject) => {
             try {
-                let usersCount = await db.get().collection(collections.USER_COLLECTION).find().count()
+                let usersCount = await db.get().collection(collections.USER_COLLECTION).countDocuments({})
                 resolve(usersCount)
             } catch (err) {
                 reject(err)
