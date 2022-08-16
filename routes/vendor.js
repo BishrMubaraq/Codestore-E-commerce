@@ -3,7 +3,6 @@ const router = express.Router();
 const vendorsController = require('../controller/vendors/vendorsControllers')
 const multer = require('../middlewares/multer')
 const vendorHelpers = require('../helpers/vendorHelpers');
-const adminHelpers = require('../helpers/adminHelpers');
 const verifyLogin = function (req, res, next) {
     if (req.session.vendorData) {
         let vendor = req.session.vendorData
